@@ -26,7 +26,7 @@ int main()
     testVar = testVar - 1;
     cout << "Underflow: " << testVar << endl;
 
-    // testing how the system handle the overflow and underflow
+        // Testing how the system handle the overflow and underflow
 
     test = 2.0e38 * 1000; // should overflow test
     cout << "Overflow test: " << test << endl;

@@ -1,5 +1,5 @@
 /*
-This program asks for sales figures for 3 days. Total sales are calculated and displayed in a table.
+The fixed manipulator is used with cout to format floating-point numbers so that they always show a fixed number of digits after the decimal point.
 */
 
 #include <iostream>
@@ -25,7 +25,7 @@ int main()
 
     // Display the sales figures.
     cout << "\n-----Sales Figures-----\n";
-    cout << setprecision(5); // You can absolutely set the precision once, and it will apply to all subsequent floating-point outputs using cout — until you change it again.
+    cout << setprecision(4) << fixed; // You can set the precision and fixed manipulator once, and it will apply to all subsequent floating-point outputs using cout — until you change it again.
     cout << "Day 1: " << setw(10) << day1 << endl;
     cout << "Day 2: " << setw(10) << day2 << endl;
     cout << "Day 3: " << setw(10) << day3 << endl;
