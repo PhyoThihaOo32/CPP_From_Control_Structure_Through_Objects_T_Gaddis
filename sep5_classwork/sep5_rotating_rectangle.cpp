@@ -10,7 +10,7 @@ int main()
     double length, width, area, parameter, temp;
     char answer;
 
-    // Getting user input
+    // Getting user inpnut
     std::cout << "Welcome to the Rectangle Program. \nUnits are in meter.\nOnly accept positive real numbers." << std::endl;
     std::cout << "What is the length? " << std::endl;
     std::cin >> length;
