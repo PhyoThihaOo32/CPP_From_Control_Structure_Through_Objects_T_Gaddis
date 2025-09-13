@@ -27,8 +27,8 @@ int main()
     cout << setprecision(2) << showpoint << fixed;
 
     // display the result
-    cout << "Monthly pay:\t " << monthly_pay << endl;
-    cout << "Weekly pay:\t " << weekly_pay << endl;
+    cout << "Monthly pay:\t " << monthly_pay << "$" << endl;
+    cout << "Weekly pay:\t " << weekly_pay << "$" << endl;
 
     return 0;
 }
