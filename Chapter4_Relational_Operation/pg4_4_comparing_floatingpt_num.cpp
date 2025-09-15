@@ -12,11 +12,8 @@ int main()
 
     a += 1e-20;
 
-    // if (0.01 == 1e-2)
-    //     std::cout << "same";
-
     if (a == b)
-        std::cout << " a and b are equal." << std::endl;
+        std::cout << "a and b are equal." << std::endl;
     // if (a > b)
     //     std::cout << " a is greater than b." << std::endl;
 
