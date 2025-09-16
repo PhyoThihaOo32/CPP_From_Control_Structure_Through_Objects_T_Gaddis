@@ -1,6 +1,6 @@
 /*
 Menu driven program allow the user to determin the course of action by selecting it from a list of action.
-This program calculate the charges for membership in a health club.
+This program calculate the charges for membership in a health club using switch statements.
 */
 
 #include <iostream>
@@ -42,38 +42,40 @@ int main()
 
     if (cin.fail() || (choice < 1 || choice > 4)) // choice must be in range (1,4) or user must enter integer value
     {
-        cout << "Invalid Data and User Input." << endl;
+        cout << "Invalid Data Type and User Input." << endl;
+    }
+    else if (choice == QUIT_CHOICE)
+    {
+        cout << "🥦 “Eat right, stay fit, die anyway—but at least you’ll look good doing it!” 💪😂" << endl;
     }
     else
     {
-        cout << "Great! Please enter the months: ";
+        cout << "Great!Now please enter the months: ";
         cin >> months;
-        if (choice == ADULT_CHOICE)
+
+        switch (choice)
         {
+        case ADULT_CHOICE:
             charges = months * ADULT_RATE;
             cout << "You have chosen the adult membership plan.\n"
                  << "Charges for " << months << " months: " << charges << " $." << endl;
-        }
-        else if (choice == CHILD_CHOICE)
-        {
+            break;
+        case CHILD_CHOICE:
             charges = months * CHILD_RATE;
             cout << "You have chosen the child membership plan.\n"
                  << "Charges for " << months << " months: " << charges << " $." << endl;
-        }
-
-        else if (choice == SENIOR_CHOICE)
-        {
+            break;
+        case SENIOR_CHOICE:
             charges = months * SENIOR_RATE;
             cout << "You have chosen the senior membership plan.\n"
                  << "Charges for " << months << " months: " << charges << " $." << endl;
+            break;
+        default:
+            break;
         }
-        else if (choice == QUIT_CHOICE)
-        {
-            cout << "Thank you. We hope to see you again." << endl;
-        }
-    }
 
-    return 0;
+        return 0;
+    }
 }
 
 /*
