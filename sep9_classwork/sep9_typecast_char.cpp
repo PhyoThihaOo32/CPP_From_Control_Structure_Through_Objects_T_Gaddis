@@ -28,7 +28,6 @@ int main()
 
     cout << " >> " << static_cast<char>(userinput - 32) << endl;
 
-    cout << (25.0 / 2);
 
     return 0;
 }

@@ -73,7 +73,8 @@ int main()
          << "(" << distance_km << " km)" << endl;
     cout << "Duration:\t" << duration_hour << " hr " << duration_min << " min" << endl;
     cout << "Speed(mph):\t" << speed << " miles per hour" << endl;
-    cout << setprecision(2) << showpoint << "Ticker price:\t" << "$" << ticket_price << endl;
+    cout << setprecision(2) << showpoint << "Ticker price:\t" 
+         << "$" << ticket_price << endl;
     cout << endl;
     cout << "Thank you for flying from " << city_from << " to "
          << city_to << " with " << name_airline;
