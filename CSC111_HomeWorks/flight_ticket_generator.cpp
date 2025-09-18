@@ -1,7 +1,7 @@
 /*
-This program will ask the flight informations from the user and
-calculate the distance, time, and speed and set the numeric data format.
-Finally will print out the flight summary to the console.
+This program asks the flight informations from the user and
+calculate the distance and speed, convert the time into hour and mintute and then format the numeric data.
+Finally prints out the flight info summary to the console.
 */
 
 #include <iostream>
@@ -17,8 +17,8 @@ int main()
     const double KM_PER_MI = 1.609344;
 
     // variables for the program
-    string city_from,
-        city_to,
+    string name_city_from,
+        name_city_to,
         name_airline;
 
     double distance_miles,
@@ -33,10 +33,10 @@ int main()
 
     // get city names(to and from)
     cout << "Which city are you flying from?\t\t";
-    getline(cin, city_from);
+    getline(cin, name_city_from);
 
     cout << "Which city are you flying to?\t\t";
-    getline(cin, city_to);
+    getline(cin, name_city_to);
 
     // get flight distance in miles
     cout << "How many miles is the flight?\t\t";
@@ -73,11 +73,11 @@ int main()
          << "(" << distance_km << " km)" << endl;
     cout << "Duration:\t" << duration_hour << " hr " << duration_min << " min" << endl;
     cout << "Speed(mph):\t" << speed << " miles per hour" << endl;
-    cout << setprecision(2) << showpoint << "Ticker price:\t" 
+    cout << setprecision(2) << showpoint << "Ticker price:\t"
          << "$" << ticket_price << endl;
     cout << endl;
-    cout << "Thank you for flying from " << city_from << " to "
-         << city_to << " with " << name_airline;
+    cout << "Thank you for flying from " << name_city_from << " to "
+         << name_city_to << " with " << name_airline;
 
     return 0;
 }

@@ -19,6 +19,7 @@ int main()
     cout << "Your nubmer " << user_num << " is";
 
     // check if the number is even or odd.
+    
     if (user_num % 2 == 0)
     {
         cout << " even." << endl;
