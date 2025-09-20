@@ -38,7 +38,7 @@ int main()
 
     if (operator_option == 'A' || operator_option == 'a')
     {
-        cout << num1 << " + " << num2 << "= " << (num1 + num2) << endl;
+        cout << num1 << " + " << num2 << " = " << (num1 + num2) << endl;
     }
     else if (operator_option == 'S' || operator_option == 's')
     {
