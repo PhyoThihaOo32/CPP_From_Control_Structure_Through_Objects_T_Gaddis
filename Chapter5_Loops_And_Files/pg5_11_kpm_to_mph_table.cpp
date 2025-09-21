@@ -22,7 +22,7 @@ int main()
     // set the numeric data output
     cout << fixed << showpoint << setprecision(1);
 
-    cout << "KPH\t\t" << "MPH" << endl;
+    cout << "KPH\t\tMPH" << endl;
     cout << "--------------------" << endl;
 
     for (kph = MIN_KPH; kph <= MAX_KPH; kph += 10)
