@@ -1,0 +1,5 @@
+For day 1 sales: 100
+For day 2 sales: 100
+For day 3 sales: 100
+Total sales: 300
+Average sales: 100
