@@ -24,4 +24,5 @@ void showNumberZero()
 
     cout << "Number = " << number << endl;
     number = 12;
+    
 }

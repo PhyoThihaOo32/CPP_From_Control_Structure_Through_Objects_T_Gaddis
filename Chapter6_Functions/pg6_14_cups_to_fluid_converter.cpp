@@ -27,7 +27,7 @@ int main()
 
     ounces = cupsToOunces(number_cups);
 
-    cout << number_cups << " number of cups is equivalent to " << ounces << " fluid ounces." << endl;
+    cout << number_cups << " cups is equivalent to " << ounces << " fluid ounces." << endl;
 
     return 0;
 }

@@ -22,7 +22,7 @@ int main()
 // this function increase a number by 1
 void increaseNumber()
 {
-    static int number; // auto initialized to zero
+    static int number; // auto initialized to zero // static local variable is only initialized once in the program lifetime
 
     cout << number++ << endl;
 }
