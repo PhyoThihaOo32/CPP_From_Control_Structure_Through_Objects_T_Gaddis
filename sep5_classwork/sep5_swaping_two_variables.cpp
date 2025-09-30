@@ -27,5 +27,7 @@ int main()
     std::cout << "x value: " << x << "\n"
               << "y value: " << y << std::endl;
 
+    std::cout << "What about temp: " << temp << std::endl;
+
     return 0;
 }

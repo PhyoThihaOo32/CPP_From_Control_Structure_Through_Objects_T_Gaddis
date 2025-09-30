@@ -21,13 +21,12 @@ int main()
     cout << "Type a Uppercase letter:\n";
     cin >> userinput;
 
-    cout << " >> " << static_cast<char>(userinput + 32) << endl;
+    cout << userinput << " >> " << static_cast<char>(userinput + 32) << endl;
 
     cout << "Type a Lower case letter:\n";
     cin >> userinput;
 
-    cout << " >> " << static_cast<char>(userinput - 32) << endl;
-
+    cout << userinput << " >> " << static_cast<char>(userinput - 32) << endl;
 
     return 0;
 }

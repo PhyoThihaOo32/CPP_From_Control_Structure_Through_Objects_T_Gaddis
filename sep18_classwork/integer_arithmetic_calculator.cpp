@@ -29,8 +29,8 @@ int main()
     cin >> operator_option;
 
     // check if the valid input
-    if (!(operator_option == 'A' || operator_option == 'a' || operator_option == 'S' || operator_option == 's' ||
-          operator_option == 'M' || operator_option == 'm' || operator_option == 'D' || operator_option == 'd'))
+    while (!(operator_option == 'A' || operator_option == 'a' || operator_option == 'S' || operator_option == 's' ||
+             operator_option == 'M' || operator_option == 'm' || operator_option == 'D' || operator_option == 'd'))
     {
         cout << "Please type the correct operation input. (A/S/M - a/s/m)";
         cin >> operator_option;
@@ -61,7 +61,7 @@ int main()
     }
     else
     {
-        cout << "That ws not an option." << endl;
+        cout << "That is not an option." << endl;
     }
 
     return 0;

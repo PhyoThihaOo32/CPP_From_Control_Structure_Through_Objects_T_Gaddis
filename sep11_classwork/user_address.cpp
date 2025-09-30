@@ -17,7 +17,7 @@ int main()
     // Ask user information - street number
     cout << "Enter street number:\t";
     cin >> st_number;
-    cin.ignore();
+    cin.ignore(); //  discards that leftover newline.
 
     // Ask user street name
     cout << "Enter street name:\t";

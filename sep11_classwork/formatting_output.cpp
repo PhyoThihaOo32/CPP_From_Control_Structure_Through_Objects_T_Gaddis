@@ -1,7 +1,8 @@
 /*
-This program demostrate formatting output.
-showpoint - shows the floating point values.
-fixed - doesn't changed the format to e-notation.
+This program demonstrates how to format floating-point output in C++ using:
+- showpoint  : always show the decimal point
+- fixed      : display numbers in fixed-point notation (no scientific notation)
+- setprecision : control number of digits or decimal places
 */
 
 #include <iostream>
@@ -11,27 +12,26 @@ using namespace std;
 
 int main()
 {
-
+    // Constants and variables
     const float PI = 3.14159265359;
     float gpa = 4.0;
 
-    // cout << fixed << 12345678.12345 << endl; // e notation - 10 to the power.
+    // ===== Without formatting =====
+    cout << "Default PI: " << PI << endl;
+    cout << "Default GPA: " << gpa << endl;
 
-    // cout << PI << endl;
-    // cout << gpa << showpoint << endl; // showpoint shows the floating point values.
+    // ===== showpoint =====
+    cout << "\nUsing showpoint (forces decimal point even for whole numbers):" << endl;
+    cout << showpoint << gpa << endl;
 
-    // // cout << noshowpoint << gpa << endl;
+    // ===== setprecision =====
+    cout << "\nUsing setprecision(9) with showpoint (total digits displayed):" << endl;
+    cout << setprecision(9) << showpoint << PI << endl;
+    cout << setprecision(9) << 3.142 << endl;
 
-    // // controlling the total number of digits ( before and after the decimal)
-
-    // cout << setprecision(9) << showpoint;
-    // cout << PI << endl;
-    // cout << 3.142 << endl;
-
-    // controlling the number of digits after the decimals
-
-    cout << showpoint << fixed << setprecision(5);
-    cout << PI << endl;
+    // ===== fixed + setprecision =====
+    cout << "\nUsing fixed + setprecision(5) (controls digits after decimal):" << endl;
+    cout << fixed << setprecision(5) << PI << endl;
 
     return 0;
 }

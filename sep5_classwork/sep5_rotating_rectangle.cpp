@@ -39,7 +39,7 @@ int main()
         length = width;
         width = temp;
         area = length * width;
-        parameter = length + width;
+        parameter = 2 * (length + width);
 
         // Printing Result after rotation
         std::cout << "-----After 90 Degree Rotation-----" << std::endl;

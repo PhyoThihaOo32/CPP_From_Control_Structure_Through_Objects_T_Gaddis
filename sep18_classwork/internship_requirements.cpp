@@ -28,9 +28,8 @@ int main()
     cin >> recommendation_input;
 
     // set flag
-    recommendation_input == 'Y' || recommendation_input == 'y' ? true : false;
+    hasRecommendation = (recommendation_input == 'Y' || recommendation_input == 'y' ? true : false);
     // recomendation_input = recommendation_input == 'Y' || recommendation_input == 'y';
-  
 
     // determin the eligibility
     if (credits >= 40 && (hasRecommendation || gpa > 3.5))

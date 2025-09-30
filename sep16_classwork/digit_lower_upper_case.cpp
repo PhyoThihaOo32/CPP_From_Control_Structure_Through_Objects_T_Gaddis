@@ -39,7 +39,7 @@ int main()
     }
     else
     {
-        cout << "This might be a symbol." << endl;
+        cout << "This might be a symbol LOL." << endl;
     }
 
     return 0;

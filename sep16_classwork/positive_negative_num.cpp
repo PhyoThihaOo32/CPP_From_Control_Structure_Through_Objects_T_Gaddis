@@ -16,25 +16,11 @@ int main()
     cin >> user_num;
 
     // facotoring
-    cout << "This is ";
+    cout << "This is " <<
 
-    // check if the number is positive, negative or zero.
-    if (user_num == 0)
-    {
-        cout << "zero." << endl;
-    }
-    else if (user_num > 0)
-    {
-        cout << "positive number." << endl;
-    }
-    else if (user_num < 0)
-    {
-        cout << "negative number." << endl;
-    }
-    else
-    {
-        cout << "not a number." << endl;
-    }
+        // check if the number is positive, negative or zero.
+
+        ((user_num == 0) ? "zero" : ((user_num > 0) ? "positive" : "negative")) << " number" << endl;
 
     return 0;
 }

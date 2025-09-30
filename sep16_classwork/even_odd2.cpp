@@ -15,28 +15,15 @@ int main()
     cout << "Enter your number: ";
     cin >> user_number;
 
-
     // check the number is positive, negative or zero and aslo check even or odd.
-    if (user_number > 0)
+    if (user_number == 0)
     {
-        cout << "Positive number.\n";
-        if (user_number % 2 == 0)
-        {
-            cout << "And even." << endl;
-        }
-        else
-        {
-            cout << "And odd number." << endl;
-        }
-    }
-    else if (user_number < 0)
-    {
-        cout << "Negative number." << endl;
+        cout << "This is a zero." << endl;
     }
     else
     {
-        cout << "This is zero." << endl;
+        cout << "This is a " << ((user_number > 0) ? "positive " : "negative ");
+        cout << "and " << ((user_number % 2 == 0) ? "even " : "odd ") << "numbers" << endl;
     }
-
     return 0;
 }
