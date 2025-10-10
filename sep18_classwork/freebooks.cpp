@@ -15,7 +15,7 @@ int main()
 {
 
     int freeBooks;
-    bool isPremiumCustomer, isRegularCustomer;
+    bool isPremiumCustomer;
     char membership;
     int nbooksPurchased;
 
@@ -25,7 +25,7 @@ int main()
     cout << "How many books you are buying today? ";
     cin >> nbooksPurchased;
 
-    membership == '1' ? isPremiumCustomer = true : isRegularCustomer = true;
+    membership == '1' ? isPremiumCustomer = true : isPremiumCustomer = false;
 
     freeBooks = (isPremiumCustomer ? (nbooksPurchased >= 8 ? 2 : (nbooksPurchased >= 5 ? 1 : 0)) : (nbooksPurchased >= 12 ? 2 : (nbooksPurchased >= 7 ? 1 : 0)));
 
