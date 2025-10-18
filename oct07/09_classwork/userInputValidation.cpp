@@ -14,9 +14,10 @@ int main()
     int num_classes, course_credit = 0;
     double numeric_grade,
         quality_point,
-        product_credits = 0,
+        product_credits,
         semester_GPA = 0,
-        total_credit = 0;
+        total_credit = 0,
+        total_quality_point = 0;
     string letter_grade;
     bool isPassingGrade;
 
@@ -125,6 +126,9 @@ int main()
             product_credits = course_credit * quality_point;
         }
 
+        total_credit += quality_point;
+        total_quality_point += product_credits;
+
         // determine if is a passing or failing grade
         isPassingGrade = (numeric_grade >= 60) ? true : false;
 
@@ -138,7 +142,7 @@ int main()
              << (isPassingGrade ? "passing" : "failing") << " grade." << endl;
         cout << "Numeric grade:\t" << setw(5) << numeric_grade << endl;
         cout << "Quality point:\t" << setw(5) << quality_point << endl;
-        cout << "Semester GPA:\t" << product_credits << endl;
+        cout << "Product of credit:\t" << product_credits << endl;
     }
 
     return 0;

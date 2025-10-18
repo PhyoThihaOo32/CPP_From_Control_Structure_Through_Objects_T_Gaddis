@@ -1,5 +1,5 @@
 /*
-This is a simple interger arithmetic calculator program. [ but using switch statment]
+This is a simple interger arithmetic calculator program _ using do while loop. [ but using switch statment]
 This program ask two interger from the user. Display the Operation and Menu and Perform the desired operation.
 [if the operation input is not valid - will ask the user one more time to type valid value, or else program will stop.]
 */
@@ -14,9 +14,8 @@ int main()
     int num1, num2;
     char operator_option;
     char user_option;
-    bool isContinue = true;
 
-    while (isContinue)
+    do
     {
 
         // get the user numbers
@@ -62,10 +61,10 @@ int main()
             cout << "\bInvalid Operator Input." << endl;
         }
 
-        cout << "Enter 'Q' or 'q'  to quit. Or Else to continue.";
+        cout << "Enter 'Q' or 'q'  to quit. Or Type any character to continue.";
         cin >> user_option;
 
-        user_option == 'Q' || user_option == 'q' ? isContinue = false : isContinue = true;
-    }
+    } while (user_option != 'Q' && user_option != 'q');
+
     return 0;
 }
