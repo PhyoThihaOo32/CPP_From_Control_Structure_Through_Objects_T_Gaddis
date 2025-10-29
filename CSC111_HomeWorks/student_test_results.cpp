@@ -3,7 +3,7 @@ This program checks a student's test performance based on their test scores.
 1. It calculates the average score of all tests entered by the user.
 2. It counts how many tests were passed and how many were failed.
 3. It also identifies tests with scores over 100 (which may include extra credit).
-4. The program performs input validation to ensure all scores are valid numbers within the allowed range.
+4. The program performs input validation to ensure all scores/credits are valid numbers within the allowed range.
 */
 
 #include <iostream>
@@ -56,13 +56,13 @@ int main()
                 // validating user input for extra credit
                 if (extra_credit < 0 || extra_credit > 10)
                 {
-                    cout << "Note: Maximum extra credit allowed is 10 points and (can't be negative.)"
+                    cout << "Note: Maximum extra credit allowed is 10 points and (Can't be negative.)"
                          << endl;
                 }
             } while (extra_credit < 0 || extra_credit > 10);
 
             // getting numeri course grade from the user
-            cout << "Enter your numeric course grade[0 - 100]for test " << test_count << " : ";
+            cout << "Enter your numeric course grade [0 - 100] for test " << test_count << " : ";
             cin >> test_score;
 
             // validate numeric course grade
@@ -73,17 +73,13 @@ int main()
 
         // check the passing, failing and test above 100 and then adding the counters
         if (test_score >= 100)
-        {
             test_above100++;
-        }
+
         if (test_score >= 60)
-        {
             passing_test++;
-        }
+
         else
-        {
             failing_test++;
-        }
 
         // calculate the total test scores
         total_scores += test_score;
@@ -102,8 +98,9 @@ int main()
 
     cout << "\nTotal test scores: " << total_scores << endl;
     cout << "Test average :\t" << avg_scores << endl;
-    cout << "Number of passing tests :" << passing_test << endl;
-    cout << "Number of failing tests(if any) : " << failing_test << endl;
+    cout << "Total number of tests : " << num_tests << endl;
+    cout << "Number of passing tests : " << passing_test << endl;
+    cout << "Number of failing tests : " << failing_test << endl;
     cout << "Number of tests in which grade was 100 or more : " << test_above100 << endl;
 
     return 0;

@@ -27,14 +27,5 @@ int main()
 
     outputFile.close();
 
-    ifstream inputFile("multiplication_table.txt");
-    int numbers;
-    while (inputFile >> numbers)
-    {
-        cout << numbers;
-    }
-
-    inputFile.close();
-
     return 0;
 }

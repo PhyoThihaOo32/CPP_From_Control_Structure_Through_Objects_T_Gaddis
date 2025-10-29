@@ -8,8 +8,8 @@ int main()
 
     int num_days;
     int num_steps;
-    int total_steps = 0;
-    int num_days_goal_met = 0;
+    int total_steps = 0;       // accumulator
+    int num_days_goal_met = 0; // counter
     int step_goal;
     float avg_steps;
 

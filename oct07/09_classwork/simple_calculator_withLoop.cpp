@@ -14,7 +14,7 @@ int main()
     int num1, num2;
     char operator_option;
     char user_option;
-    bool isContinue = true;
+    bool isContinue = true; // flag
 
     while (isContinue)
     {
