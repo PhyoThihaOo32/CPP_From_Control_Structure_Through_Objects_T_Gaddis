@@ -23,7 +23,7 @@ int factorial(int n)
 
 int summation(int n)
 {
-    if (n == 1)
+    if (n == 1) // base case
         return 1;
     else
         return n + summation(n - 1);
