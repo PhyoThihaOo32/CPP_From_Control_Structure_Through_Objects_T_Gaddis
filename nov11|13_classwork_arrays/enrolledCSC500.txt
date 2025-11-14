@@ -1,0 +1,6 @@
+1001 Alan Turing
+9999 Bjarne Stroustrup
+1234 Linus Torvalds
+7890 James Gosling
+9989 Dennis Ritchie
+8754 Brian Kernighan

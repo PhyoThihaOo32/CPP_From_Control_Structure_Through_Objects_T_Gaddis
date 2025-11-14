@@ -24,8 +24,8 @@ void displayArrayValue(const int *const ptr, int size)
 {
     for (int i = 0; i < size; i++)
     {
-        cout << *(ptr + i) << " "; // “ptr + i → compute a new address (temporary)”
-                                   // “ptr++ → modify the pointer’s address (permanent)”
+        cout << *(ptr + i) << endl; // “ptr + i → compute a new address (temporary)”
+                                    // “ptr++ → modify the pointer’s address (permanent)”
     }
     cout << endl;
 }
