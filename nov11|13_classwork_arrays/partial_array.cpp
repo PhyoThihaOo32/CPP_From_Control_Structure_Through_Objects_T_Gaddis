@@ -20,6 +20,8 @@ double find_average(double[], int);
 double findMax(double[], int);
 double findMin(double[], int);
 int linearSearch(int[], int, int);
+void printGrades(double[], int[], char[], int);
+void print_student_info(double[], int[], char[], int, int);
 
 int main()
 {
@@ -31,7 +33,9 @@ int main()
 
     double midterm_grade[SIZE] = {};
     char letter_grade[SIZE] = {};
-    int student_id[SIZE] = {};
+    int student_id[SIZE] = {},
+        search_id, // the student id that the user will type in to be used with linear search
+        index;     // to store the index value return by the linear search
     string first_name[SIZE] = {};
     string last_name[SIZE] = {};
     double ttl_grade, class_avg_grade, max_grade, min_grade;
@@ -98,11 +102,7 @@ int main()
     cout << setprecision(2) << showpoint << fixed;
 
     // print out the student id and their letter grade
-    for (int i = 0; i < student_count; i++)
-    {
-        cout << student_id[i] << " has a midterm grade of " << midterm_grade[i] << endl;
-        cout << "and letter grade is " << letter_grade[i] << endl;
-    }
+    printGrades(midterm_grade, student_id, letter_grade, student_count);
 
     cout << "Maximum midterm grade: " << max_grade << endl;
     cout << "Minimum midterm grade: " << min_grade << endl;
@@ -110,6 +110,19 @@ int main()
     cout << "Number of passing grade: " << passing_grade << endl;
     cout << "Number of failing grade: " << failing_grade << endl;
 
+    cout << "Type in a student ID and you can see the student's info: ";
+    cin >> search_id;
+
+    index = linearSearch(student_id, search_id, student_count);
+
+    if (index != -1)
+    {
+        print_student_info(midterm_grade, student_id, letter_grade, index, student_count);
+    }
+    else
+    {
+        cout << "The search id " << search_id << " is not in the database." << endl;
+    }
     return 0;
 }
 
@@ -166,7 +179,7 @@ int linearSearch(int array[], int value, int size)
     int i = 0;
     while (found == false && i < size)
     {
-        if (array[i] = value)
+        if (array[i] == value)
         {
             found = true;
             position = i;
@@ -174,4 +187,20 @@ int linearSearch(int array[], int value, int size)
         i++;
     }
     return position;
+}
+
+void printGrades(double grades[], int student_id[], char letter_grade[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        cout << "Student ID: " << student_id[i] << " has a midterm grade of "
+             << grades[i] << " and letter grade is " << letter_grade[i] << endl;
+    }
+    cout << endl;
+}
+
+void print_student_info(double grades[], int student_id[], char letter_grade[], int index, int size)
+{
+    cout << "Student ID: " << student_id[index] << " has a midterm grade of "
+         << grades[index] << " and letter grade is " << letter_grade[index] << endl;
 }

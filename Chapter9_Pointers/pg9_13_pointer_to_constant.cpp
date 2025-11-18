@@ -18,9 +18,8 @@ int main()
     double monthly_sales[SIZE] = {900.50, 80.75, 110.00, 85.25, 23.60};
     displaySales(SALES, SIZE);
 
-    cout << "\n['p];;;;;;;;;;;A pointr to const can also recevied the address of a nonconstant item." << endl;
+    cout << "\nA pointer to const can also recevied the address of a nonconstant item." << endl;
     displaySales(monthly_sales, SIZE);
-;;;;
     return 0;
 }
 
