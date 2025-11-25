@@ -110,6 +110,7 @@ int main()
     cout << "Number of passing grade: " << passing_grade << endl;
     cout << "Number of failing grade: " << failing_grade << endl;
 
+    // linear search part
     cout << "Type in a student ID and you can see the student's info: ";
     cin >> search_id;
 
@@ -123,6 +124,8 @@ int main()
     {
         cout << "The search id " << search_id << " is not in the database." << endl;
     }
+
+    
     return 0;
 }
 
