@@ -62,7 +62,7 @@ int main()
         ptr++;
     }
     cout << endl;
-    ptr = nullptr;
+    ptr = num_array; // set it back to pointing to the beginning of the array
 
     return 0;
 }
