@@ -6,6 +6,17 @@
 using namespace std;
 
 // ----- Member function definitions -----
+Rectangle::Rectangle()
+{
+    length = 0.0;
+    width = 0.0;
+}
+
+Rectangle::Rectangle(double len, double w)
+{
+    length = len;
+    width = w;
+}
 
 void Rectangle::setLength(double l)
 {
@@ -27,21 +38,6 @@ void Rectangle::setWidth(double w)
         cout << "Invalid width. Setting to 0.\n";
         width = 0;
     }
-}
-
-double Rectangle::getLength() const
-{
-    return length;
-}
-
-double Rectangle::getWidth() const
-{
-    return width;
-}
-
-double Rectangle::getArea() const
-{
-    return length * width;
 }
 
 // Display rectangle dimensions and area

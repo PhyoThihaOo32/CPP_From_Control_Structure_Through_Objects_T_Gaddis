@@ -10,14 +10,30 @@ private:
     double width = 0;
 
 public:
-     // Mutators (Setters)
+    // constructor
+    Rectangle();
+    Rectangle(double, double); // constructor overloading - accepting two double parameters
+
+    // Mutators (Setters)
     void setLength(double);
     void setWidth(double);
 
     // Accessors (Getters)
-    double getLength() const;
-    double getWidth() const;
-    double getArea() const;
+    // inline memeber functions
+    double getLength() const
+    {
+        return length;
+    }
+
+    double getWidth() const
+    {
+        return width;
+    }
+
+    double getArea() const
+    {
+        return length * width;
+    }
 
     // Display rectangle info
     void showRect(const char *roomName) const;
