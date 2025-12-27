@@ -66,6 +66,7 @@ int *duplicateArray(const int *arrayPtr, int size)
     for (int i = 0; i < size; i++)
     {
         *(newArray + i) = *(arrayPtr + i);
+        // newArray[i] = arrayPtr[i]
     }
 
     // return the pointer to new array

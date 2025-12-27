@@ -33,7 +33,7 @@ int main()
     for (int i = 0; i < numDays; i++)
     {
         cout << "Enter the sale amount for day " << (i + 1) << " :";
-        cin >> *(ptr_sales + i);
+        cin >> *(ptr_sales + i); // dereferencing is critical
     }
 
     // calculat total sales

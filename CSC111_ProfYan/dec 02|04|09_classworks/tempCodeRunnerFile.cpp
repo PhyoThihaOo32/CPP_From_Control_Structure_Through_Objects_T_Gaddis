@@ -1,0 +1,3 @@
+
+    *iPtr = realNumber;
+    *fPtr = wholeNumber;

@@ -17,7 +17,7 @@ Pseudocode for a function that perform the linear search:
 
 using namespace std;
 
-int searchList(int[], int, int);
+int searchList(const int[], int, int);
 
 int main()
 {
@@ -54,10 +54,10 @@ int main()
         cout << "The number that you are looking for is at index " << result << endl;
     }
 
-        return 0;
+    return 0;
 }
 
-int searchList(int list[], int array_size, int searchValue)
+int searchList(const int list[], int array_size, int searchValue)
 {
     int position = -1;
     int index = 0;

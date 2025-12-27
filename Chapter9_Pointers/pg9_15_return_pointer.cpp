@@ -44,7 +44,7 @@ int *getRandomNumber(int num)
 
     for (int i = 0; i < num; i++)
     {
-        ptr_iArray[i] = rand();
+        ptr_iArray[i] = rand() % 100;
     }
 
     return ptr_iArray;
