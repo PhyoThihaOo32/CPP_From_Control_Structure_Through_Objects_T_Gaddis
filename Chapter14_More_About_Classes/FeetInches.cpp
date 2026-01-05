@@ -101,3 +101,34 @@ bool FeetInches::operator==(const FeetInches &right)
 
     return status;
 }
+
+ostream &operator<<(ostream &ostrm, const FeetInches &obj)
+{
+    ostrm << obj.feet << " feet, " << obj.inch << " inches" << endl;
+    return ostrm;
+}
+
+istream &operator>>(istream &istrm, FeetInches &obj)
+{
+    cout << "Enter Feet: ";
+    istrm >> obj.feet;
+
+    cout << "Enter Inches: ";
+    istrm >> obj.inch;
+
+    obj.simplify();
+
+    return istrm;
+}
+
+FeetInches::operator double()
+{
+    double temp = feet;
+    temp += (inch / 12.0);
+    return temp;
+}
+
+FeetInches::operator int()
+{
+    return feet;
+}
