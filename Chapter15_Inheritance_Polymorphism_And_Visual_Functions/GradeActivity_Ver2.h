@@ -9,7 +9,7 @@ using namespace std;
     -------------------------
     • Represents a graded activity (like an assignment or exam).
     • Stores a numeric score and determines a letter grade automatically.
-    • Demonstrates encapsulation and use of non-const mutator functions.
+    • Demonstrates inheritance and virtual methods for extensibility.
 */
 
 class GradeActivity_Ver2
@@ -18,9 +18,9 @@ protected:
     double score;     // Numeric score
     char letterGrade; // Letter grade (A, B, C, D, F)
 
-    // Helper function to determine the letter grade from score
-    // This function modifies the object's state, so it should NOT be const
-    void determineLetterGrade()
+    // Helper: determines the letter grade based on score
+    // Declared virtual so derived classes can override it
+    virtual void determineLetterGrade()
     {
         if (score > 89)
             letterGrade = 'A';
@@ -35,44 +35,26 @@ protected:
     }
 
 public:
-    // Default constructor
-    GradeActivity_Ver2()
-    {
-        score = 0.0;
-        letterGrade = ' ';
-    }
+    // Constructors
+    GradeActivity_Ver2() : score(0.0), letterGrade(' ') {}
 
-    // Constructor with score parameter
     GradeActivity_Ver2(double s)
     {
         score = s;
         determineLetterGrade();
     }
 
-    // Mutator: sets the score and updates the grade
+    // Mutator: sets score and updates letter grade
     void setScore(double s)
     {
         score = s;
-        determineLetterGrade();
+        determineLetterGrade(); // may call derived version if overridden
     }
 
-    // Accessor: returns numeric score
-    double getScore() const
-    {
-        return score;
-    }
+    // Accessors
+    double getScore() const { return score; }
 
-    // Accessor: returns letter grade
-    char getLetterGrade() const
-    {
-        return letterGrade;
-    }
-
-    // Display function (optional)
-    void display() const
-    {
-        cout << "Score: " << score << ", Grade: " << letterGrade << endl;
-    }
+    char getLetterGrade() const { return letterGrade; }
 };
 
 #endif

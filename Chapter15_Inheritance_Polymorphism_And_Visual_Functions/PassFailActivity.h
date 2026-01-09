@@ -1,40 +1,36 @@
-// ================================================================
-//              PASS / FAIL ACTIVITY CLASS
-// ================================================================
-
 #ifndef PASSFAILACTIVITY_H
 #define PASSFAILACTIVITY_H
 
 #include "GradeActivity_Ver2.h"
 
 /*
-===========================================
- CLASS: PassFailActivity
--------------------------------------------
- • Derived from GradeActivity_Ver2.
- • Changes the grading logic to use a minimum passing score.
- • If score ≥ minPassScore → 'P', otherwise → 'F'.
-===========================================
+    PassFailActivity class
+    -------------------------
+    • Derived from GradeActivity_Ver2.
+    • Changes grading logic: if score ≥ minPassScore → 'P', otherwise → 'F'.
 */
+
 class PassFailActivity : public GradeActivity_Ver2
 {
 protected:
     double minPassScore; // Minimum score required to pass
 
+    // Override base version — uses pass/fail logic
+    virtual void determineLetterGrade()
+    {
+        if (score >= minPassScore)
+            letterGrade = 'P';
+        else
+            letterGrade = 'F';
+    }
+
 public:
-    // Default constructor
-    PassFailActivity() : GradeActivity_Ver2()
-    {
-        minPassScore = 0.0;
-    }
+    // Constructors
+    PassFailActivity() : GradeActivity_Ver2(), minPassScore(0.0) {}
 
-    // Overloaded constructor
-    PassFailActivity(double passScore) : GradeActivity_Ver2()
-    {
-        minPassScore = passScore;
-    }
+    PassFailActivity(double passScore) : GradeActivity_Ver2(), minPassScore(passScore) {}
 
-    // Mutator
+    // Mutators
     void setMinPassScore(double s)
     {
         minPassScore = s;
@@ -43,19 +39,11 @@ public:
     // Accessors
     double getMinPassScore() const { return minPassScore; }
 
-    // Optional: convenience accessor for 'P'/'F'
-    char getPassLetterGrade()
+    // Optional: convenience function
+    char getPassLetterGrade() const
     {
-        char passLetterGrade;
-        if (score >= minPassScore)
-        {
-            passLetterGrade = 'P';
-        }
-        else
-            passLetterGrade = 'F';
-
-        return passLetterGrade;
+        return (score >= minPassScore) ? 'P' : 'F';
     }
 };
 
-#endif // PASSFAILACTIVITY_H
+#endif
