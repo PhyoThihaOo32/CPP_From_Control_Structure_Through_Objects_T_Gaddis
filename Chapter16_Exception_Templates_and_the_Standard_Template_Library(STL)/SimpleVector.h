@@ -22,7 +22,7 @@ public:
     // default constructor
     SimpleVector()
     {
-        aptr = 0;
+        aptr = nullptr;
         arraySize = 0;
         /*
         This line sets the pointer aptr to nullptr (or 0, which is an older equivalent).
@@ -34,6 +34,7 @@ public:
 
     // constructor declaration
     SimpleVector(int);
+    SimpleVector(int, T);
 
     // copy constructor declaration
     SimpleVector(const SimpleVector &);
@@ -73,6 +74,30 @@ SimpleVector<T>::SimpleVector(int s)
     for (int i = 0; i < arraySize; i++)
     {
         *(aptr + i) = 0;
+    }
+}
+
+// Constructor for SimpleVector
+// ----------------------------
+// • Allocates dynamic memory for 'size' elements.
+// • Initializes each element to the specified 'value'.
+// • Uses exception handling to catch memory allocation errors.
+
+template <class T>
+SimpleVector<T>::SimpleVector(int size, T value)
+{
+    arraySize = size;
+    try
+    {
+        aptr = new T[arraySize];
+    }
+    catch (bad_alloc)
+    {
+        memError();
+    }
+    for (int i = 0; i < arraySize; i++)
+    {
+        *(aptr + i) = value;
     }
 }
 
@@ -153,7 +178,7 @@ T &SimpleVector<T>::operator[](const int &sub)
     {
         subError();
     }
-    return aptr[sub];
+    return *(aptr + sub);
 }
 
 /*
@@ -176,6 +201,36 @@ T &SimpleVector<T>::operator[](const int &sub)
    - For small types like int → either version works the same.
    - `const int&` is a best practice for templates or overloaded functions,
      because it avoids unnecessary copying and ensures the argument is read-only.
+*/
+
+/*
+💡 Why returning a reference (T&) here is safe:
+----------------------------------------------
+
+T& SimpleVector<T>::operator[](const int& sub)
+{
+    // Return a reference to an element in the internal array (aptr)
+    return aptr[sub];
+}
+
+🧠 Key idea:
+- `aptr` points to a dynamically allocated array stored on the **heap**.
+- Elements of that array persist for the entire lifetime of the SimpleVector object.
+- So returning `aptr[sub]` by reference is safe — it refers to a real element in memory,
+  not a temporary variable.
+
+⚠️ It would be unsafe ONLY if we returned a reference to a **local (stack) variable**
+   that disappears after the function ends.
+
+Example (unsafe):
+-----------------
+int& badFunc() {
+    int x = 10;   // local variable on stack
+    return x;     // ❌ BAD — x is destroyed after the function ends
+}
+
+✅ But here, `aptr[sub]` is in heap memory that belongs to the object,
+   so it remains valid until the SimpleVector object is destroyed.
 */
 
 #endif

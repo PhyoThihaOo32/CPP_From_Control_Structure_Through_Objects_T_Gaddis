@@ -1,0 +1,70 @@
+------------------------------------------------------------
+📘 C++ Input Methods Comparison — by Phyo T. Oo
+------------------------------------------------------------
+| Function                  | Works With     | Stops Reading At | Keeps the delimiter? | Typical Use Case                            |
+|----------------------------|----------------|------------------|----------------------|---------------------------------------------|
+| cin                        | word           | Whitespace       | ❌ No                | Reading a single word (no spaces)           |
+| cin.get(char*, size)       | C-string       | Newline ('\n')   | ✅ Yes               | Reads a line with spaces (newline kept)     |
+| cin.getline(char*, size)   | C-string       | Newline ('\n')   | ❌ No                | Reads full line, discards newline           |
+| getline(cin, stringVar)    | std::string    | Newline ('\n')   | ❌ No                | Reads full line (modern and safe)           |
+------------------------------------------------------------
+💡 Tip: Use cin.ignore() before getline() to clear leftover '\n'
+------------------------------------------------------------
+
+🧠 Detailed Examples
+------------------------------------------------------------
+1️⃣ cin — reads a single word (stops at space or newline)
+------------------------------------------------------------
+string word;
+cin >> word;       // Input: Hello world
+cout << word;      // Output: Hello
+// Only reads "Hello", stops at space.
+
+------------------------------------------------------------
+2️⃣ cin.get(char*, size) — reads line including spaces,
+     but keeps the newline in the input buffer
+------------------------------------------------------------
+char text[20];
+cin.get(text, 20); // Input: Hi there
+cout << text;      // Output: Hi there
+// BUT the '\n' stays in the buffer, which may cause issues
+// with later input (e.g., next getline() reads empty line).
+
+------------------------------------------------------------
+3️⃣ cin.getline(char*, size) — reads line, removes newline
+------------------------------------------------------------
+char text[20];
+cin.getline(text, 20); // Input: Hi there
+cout << text;          // Output: Hi there
+// Reads until newline and removes it from buffer.
+// Safe to use repeatedly for multiple lines.
+
+------------------------------------------------------------
+4️⃣ getline(cin, stringVar) — C++ style, safest and flexible
+------------------------------------------------------------
+string line;
+getline(cin, line);     // Input: I love programming!
+cout << line;           // Output: I love programming!
+// Works with std::string (no size limit).
+// Removes newline automatically.
+
+------------------------------------------------------------
+🧩 Mixing cin >> and getline()
+------------------------------------------------------------
+int age;
+string name;
+cin >> age;             // Input: 25↵
+cin.ignore();           // Clears '\n' left in buffer
+getline(cin, name);     // Input: Phyo T. Oo
+cout << name;           // Output: Phyo T. Oo
+
+------------------------------------------------------------
+💡 Summary Visualization
+------------------------------------------------------------
+Input Buffer Example:  "Hello world\n"
+
+cin >> word;            → reads "Hello"
+cin.get(buf, 20);       → reads "Hello world" (newline left)
+cin.getline(buf, 20);   → reads "Hello world" (newline removed)
+getline(cin, str);      → reads "Hello world" (newline removed)
+------------------------------------------------------------
