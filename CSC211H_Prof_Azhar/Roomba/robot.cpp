@@ -1,11 +1,8 @@
-/**
-
-
+/*
    This program is modified version of "roomba.cpp 31-jan-2019/dr. azhar based on work Dr. sklar".
    This program demonstrates a simple robot (called "roomba") wandering around in a simulated room.
    The robot can move in any of four directions - based on user input - (forward, backward, left or right) within a grid.
    Robot can move one point per command(N/E/S/W) or all the way to (N/E/S/W) - will stop at the boundary.
-   (Addition command C - will set the robot at the center.)
 */
 
 #include <iostream>
