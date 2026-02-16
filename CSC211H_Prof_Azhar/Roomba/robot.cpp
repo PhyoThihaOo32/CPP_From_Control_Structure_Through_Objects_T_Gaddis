@@ -1,45 +1,39 @@
 /**
-   roomba.cpp
-   31-jan-2019/dr. azhar
-   based on
-   work Dr. sklar
-
-   this program demonstrates a simple robot (called "roomba")
-   wandering around in a simulated room. the robot can move in any of
-   four directions (forward, backward, left or right) within a "grid"
-   so that any move changes the robot's location by one grid square.
-   for example, if the robot starts at location (0,0) and moves forward,
-   it will end up at location (0,1).
 
 
+   This program is modified version of "roomba.cpp 31-jan-2019/dr. azhar based on work Dr. sklar".
+   This program demonstrates a simple robot (called "roomba") wandering around in a simulated room.
+   The robot can move in any of four directions - based on user input - (forward, backward, left or right) within a grid.
+   Robot can move one point per command(N/E/S/W) or all the way to (N/E/S/W) - will stop at the boundary.
+   (Addition command C - will set the robot at the center.)
 */
 
 #include <iostream>
 using namespace std;
 
-void display(int &, int &);
-void moveForward(int &, int);
-void moveBackward(int &, int);
-void moveRight(int &, int);
-void moveLeft(int &, int);
+void display(int &, int &);    //  display the x and y co-ordinates
+void moveForward(int &, int);  // move one point forward(North)
+void moveBackward(int &, int); // move one point backward(South)
+void moveRight(int &, int);    // move one point to right(East)
+void moveLeft(int &, int);     // move one point to left(West)
 
 // behavior function for each direction
-// roomba will move until it hits the limit
+// roomba will move all the way to N/E/S/W until it hits the limit and - stop
 void moveForwardToWall(int &, int &, int);
 void moveBackwardToWall(int &, int &, int);
 void moveRightToWall(int &, int &, int);
 void moveLeftToWall(int &, int &, int);
 
-// back to the center
+// back to the center(0,0)
 void moveCenter(int &, int &);
 
-// function to run roomba
-void runRoomba(int, int, int, int, int, int);
+// run roomba
+void runRoomba(int &, int &, int, int, int, int);
 
 int main()
 {
 
-    // size/boundary of the room 10 * 10
+    // size/boundary of the room 10 * 10 - set up manually
     const int LIMITN = 10, LIMITS = -10,
               LIMITE = 10, LIMITW = -10;
 
@@ -52,12 +46,15 @@ int main()
     return 0;
 }
 
+// function take two integer reference parameters - and display the (x, y coordinate)
 void display(int &x, int &y)
 {
     cout << "Roomba is at location ("
          << x << "," << y << ")\n";
 }
 
+// function take two parameters (one integer reference - y-ordinate, and int - North Limit)
+// increase y by one - y only increase up to the limit.
 void moveForward(int &y, int limitN)
 {
 
@@ -70,6 +67,8 @@ void moveForward(int &y, int limitN)
     }
 }
 
+// function take two parameters (one integer reference - y-ordinate, and int - South Limit)
+// decrease y by one - but only decrease up to the limit.
 void moveBackward(int &y, int limitS)
 {
 
@@ -82,6 +81,8 @@ void moveBackward(int &y, int limitS)
     }
 }
 
+// function take two parameters (one integer reference - x-ordinate, and int - East Limit)
+// increase x by one - x only increase up to the limit.
 void moveRight(int &x, int limitE)
 {
     cout << "moving right..." << endl;
@@ -93,6 +94,8 @@ void moveRight(int &x, int limitE)
     }
 }
 
+// function take two parameters (one integer reference - y-ordinate, and int - West Limit)
+// decrease x by one - only decrease up to the limit.
 void moveLeft(int &x, int limitW)
 {
     cout << "moving left..." << endl;
@@ -104,7 +107,9 @@ void moveLeft(int &x, int limitW)
     }
 }
 
-// robot will move all the way to the limit
+// robot will move all the way to the North limit
+// function take three prameters (two int references x and y and int - North Limit )
+// increase y to the limit - display the location by each move
 void moveForwardToWall(int &x, int &y, int limitN)
 {
     bool isMoving = true;
@@ -121,6 +126,9 @@ void moveForwardToWall(int &x, int &y, int limitN)
     }
 }
 
+// robot will move all the way to the South limit
+// function take three prameters (two int references x and y and int - South Limit )
+// decrease y to the limit - display the location by each move
 void moveBackwardToWall(int &x, int &y, int limitS)
 {
     bool isMoving = true;
@@ -137,6 +145,9 @@ void moveBackwardToWall(int &x, int &y, int limitS)
     }
 }
 
+// robot will move all the way to the East limit
+// function take three prameters (two int references x and y and int - East Limit )
+// increase x to the limit - display the location by each move
 void moveRightToWall(int &x, int &y, int limitE)
 {
     bool isMoving = true;
@@ -153,6 +164,9 @@ void moveRightToWall(int &x, int &y, int limitE)
     }
 }
 
+// robot will move all the way to the West limit
+// function take three prameters (two int references x and y and int - West Limit )
+// decrease x to the limit - display the location by each move
 void moveLeftToWall(int &x, int &y, int limitW)
 {
     bool isMoving = true;
@@ -172,21 +186,23 @@ void moveLeftToWall(int &x, int &y, int limitW)
 // move to the center(0,0)
 void moveCenter(int &x, int &y)
 {
+    // check if the robot is at the center
     if (x == 0 && y == 0)
     {
         cout << "Roomba is at the center already." << endl;
-        display(x, y);
     }
+    // if not put the robot back to the center
     else
     {
         cout << "Slowly Moving back to the center...beep..Beep!" << endl;
         x = 0, y = 0;
-        display(x, y);
     }
 }
 
 // the main function to run the roomba
-void runRoomba(int x, int y, int limitN, int limitE, int limitS, int limitW)
+// function take six paramters (two integer references (x, y co-ordinates), four intergers - N/E/S/W Limits)
+// user can interact with the robot
+void runRoomba(int &x, int &y, int limitN, int limitE, int limitS, int limitW)
 {
     // Promt the user to enter commands
     // the robot to go north, south, east and west and enter Q to quit
@@ -239,6 +255,7 @@ void runRoomba(int x, int y, int limitN, int limitE, int limitS, int limitW)
         case 'c':
         case 'C':
             moveCenter(x, y);
+            display(x, y);
             break;
         case 'Q':
         case 'q':
