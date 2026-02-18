@@ -50,14 +50,14 @@ void Roomba::setLimits()
 }
 
 // get user input (x and y value)
-// validate the userinput - to be within the limit
+// validate the userinput - to be within the limits
 void Roomba::setPosition()
 {
     do
     {
         cout << "Enter X-ordinate: ";
         cin >> x;
-    } while (!(x >= limitW && x <= limitE)); // DeMorgan'law
+    } while (!(x >= limitW && x <= limitE)); // Remembering DeMorgan'law...
 
     do
     {
@@ -66,6 +66,7 @@ void Roomba::setPosition()
     } while (y < limitS || y > limitN);
 }
 
+// function will display the limits
 void Roomba::displayLimits() const
 {
     cout << "North Limit:\t " << limitN << endl
@@ -74,11 +75,13 @@ void Roomba::displayLimits() const
          << "West Limit:\t " << limitW << endl;
 }
 
+// function will display roomba position
 void Roomba::displayPosition() const
 {
     cout << "Roomba is at Position: ( " << x << ", " << y << " )" << endl;
 }
 
+// function will display prompt - to interact with roomba
 void Roomba::showPrompt() const
 {
     cout << "Enter the direction to move to robot: " << endl
@@ -94,6 +97,7 @@ void Roomba::showPrompt() const
          << "Q or q to Quit." << endl;
 }
 
+// function will increase y by one(Up North) - not more than the defined limit(North)
 void Roomba::moveForward()
 {
     cout << "Moving Forward..." << endl;
@@ -101,10 +105,11 @@ void Roomba::moveForward()
     if (y > limitN) // not moving beyond the limit
     {
         cout << "Can't go further.\nRoomba is bumping up against the wall." << endl;
-        y = limitN;
+        y = limitN; // at max limit
     }
 }
 
+// function will decrease y by one(Up South) - not more than the defined limit(South)
 void Roomba::moveBackward()
 {
     cout << "moving backward...\n";
@@ -115,6 +120,8 @@ void Roomba::moveBackward()
         y = limitS;
     }
 }
+
+// function will increase x by one(Up East) - not more than the defined limit(East)
 void Roomba::moveRight()
 {
     cout << "moving right..." << endl;
@@ -125,6 +132,8 @@ void Roomba::moveRight()
         x = limitE;
     }
 }
+
+// function will decrease x by one(Up West) - not more than the defined limit(West)
 void Roomba::moveLeft()
 {
     cout << "moving left..." << endl;
@@ -136,6 +145,7 @@ void Roomba::moveLeft()
     }
 }
 
+// function will reset the postion (0,0)
 void Roomba::moveCenter()
 {
     cout << "Roomba moving slowly back to the center..." << endl;
@@ -143,9 +153,11 @@ void Roomba::moveCenter()
     y = 0;
 }
 
+// roomba will move all the way to the North limit
+// increase y to the limit - display the location by each move
 void Roomba::moveForwardToWall()
 {
-    bool isMoving = true;
+    bool isMoving = true; // set flag
     while (isMoving)
     {
         y++;
@@ -158,6 +170,9 @@ void Roomba::moveForwardToWall()
         }
     }
 }
+
+// roomba will move all the way to the South limit
+// decrease y to the limit - display the location by each move
 void Roomba::moveBackwardToWall()
 {
     bool isMoving = true;
@@ -173,6 +188,9 @@ void Roomba::moveBackwardToWall()
         }
     }
 }
+
+// roomba will move all the way to the East limit
+// increase x to the limit - display the location by each move
 void Roomba::moveRightToWall()
 {
     bool isMoving = true;
@@ -188,6 +206,9 @@ void Roomba::moveRightToWall()
         }
     }
 }
+
+// roomba will move all the way to the West limit
+// decrease x to the limit - display the location by each move
 void Roomba::moveLeftToWall()
 {
     bool isMoving = true;
@@ -204,6 +225,9 @@ void Roomba::moveLeftToWall()
     }
 }
 
+// main function to run roomba
+// function will display prompt - to control roomba
+// user can interact with the roomba
 void Roomba::runRoomba()
 {
     cout << "Roomba is Ready." << endl;

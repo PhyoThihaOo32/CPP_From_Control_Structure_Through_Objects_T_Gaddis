@@ -1,8 +1,15 @@
 /*
-   This program is modified version of "roomba.cpp 31-jan-2019/dr. azhar based on work Dr. sklar".
-   This program demonstrates a simple robot (called "roomba") wandering around in a simulated room.
-   The robot can move in any of four directions - based on user input - (forward, backward, left or right) within a grid.
-   Robot can move one point per command(N/E/S/W) or all the way to (N/E/S/W) - will stop at the boundary.
+Name: Phyo Thiha Oo
+BMCC ID: 24492624
+Semester & Class: Spring 2026 — CSC 211H-1700
+Date of Submission: Feb 18, 2026
+Time Stamp: 0910 AM
+Instructor: Dr. Azhar
+
+This program is modified version of "roomba.cpp 31-jan-2019/dr. azhar based on work Dr. sklar".
+This program demonstrates a simple robot (called "roomba") wandering around in a simulated room.
+The robot can move in any of four directions - based on user input - (forward, backward, left or right) within a grid.
+Robot can move one point per command(N/E/S/W) or all the way to (N/E/S/W) - will stop at the boundary.
 */
 
 #include <iostream>
@@ -204,7 +211,7 @@ void runRoomba(int &x, int &y, int limitN, int limitE, int limitS, int limitW)
     // Promt the user to enter commands
     // the robot to go north, south, east and west and enter Q to quit
     char direction;
-    cout << "Enter the direction to move to robot: " << endl
+    cout << "Enter the direction to move the robot: " << endl
          << "n: to move forward. " << endl
          << "N: to move forward to the wall." << endl
          << "e: to move right. " << endl
@@ -256,7 +263,7 @@ void runRoomba(int &x, int &y, int limitN, int limitE, int limitS, int limitW)
             break;
         case 'Q':
         case 'q':
-            cout << "Robot Stop. And Program Terminated." << endl;
+            cout << "Robot Stopped. And Program Terminated." << endl;
             break;
         default:
             cout << "Invalid Input.";

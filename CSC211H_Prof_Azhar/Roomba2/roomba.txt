@@ -1,0 +1,118 @@
+
+===============================================================================
+CLASS: Roomba
+===============================================================================
+
+DESCRIPTION:
+-----------
+The Roomba class simulates a robotic vacuum cleaner moving within a bounded
+rectangular room. The robot maintains its current position using x and y
+coordinates and moves within specified directional limits.
+
+The class provides functionality to:
+
+• Set movement boundaries
+• Track current position
+• Move in four directions (forward, backward, left, right)
+• Move directly to room walls
+• Reset to center
+• Display position and limits
+• Run an interactive control session
+
+COORDINATE SYSTEM:
+------------------
+The robot moves on a 2D grid where:
+
+    x → Horizontal axis (East / West)
+    y → Vertical axis (North / South)
+
+LIMITS:
+-------
+The room boundaries are defined using four directional limits:
+
+    limitN → Northern boundary (maximum y)
+    limitE → Eastern boundary (maximum x)
+    limitS → Southern boundary (minimum y)
+    limitW → Western boundary (minimum x)
+
+For simplicity, dimensions are expected to be within the range:
+
+    10 x 10  → minimum room size
+    50 x 50  → maximum room size
+
+MEMBER VARIABLES:
+-----------------
+int x       → Current x coordinate of the robot
+int y       → Current y coordinate of the robot
+
+int limitN  → North boundary
+int limitE  → East boundary
+int limitS  → South boundary
+int limitW  → West boundary
+
+CONSTRUCTORS:
+-------------
+Roomba()
+    Default constructor.
+    Initializes position to (0,0) with default limits (typically 10x10).
+
+Roomba(int, int, int, int, int, int)
+    Parameterized constructor to initialize position and limits.
+
+MUTATOR FUNCTIONS:
+------------------
+setLimits()
+    Allows user to define movement boundaries.
+
+setPosition()
+    Sets the robot’s starting position within limits.
+
+DISPLAY FUNCTIONS:
+------------------
+displayPosition() const
+    Displays the current coordinates of the robot.
+
+displayLimits() const
+    Displays current movement boundaries.
+
+showPrompt() const
+    Displays command instructions for controlling the robot.
+
+MOVEMENT FUNCTIONS:
+-------------------
+moveForward()
+    Moves robot one unit toward the North.
+
+moveBackward()
+    Moves robot one unit toward the South.
+
+moveRight()
+    Moves robot one unit toward the East.
+
+moveLeft()
+    Moves robot one unit toward the West.
+
+moveCenter()
+    Moves robot back to center position.
+
+MOVE TO WALL FUNCTIONS:
+-----------------------
+moveForwardToWall()
+    Moves robot directly to the North boundary.
+
+moveBackwardToWall()
+    Moves robot directly to the South boundary.
+
+moveRightToWall()
+    Moves robot directly to the East boundary.
+
+moveLeftToWall()
+    Moves robot directly to the West boundary.
+
+CONTROL FUNCTION:
+-----------------
+runRoomba()
+    Starts an interactive session allowing user commands to control
+    robot movement until exit.
+
+===============================================================================
