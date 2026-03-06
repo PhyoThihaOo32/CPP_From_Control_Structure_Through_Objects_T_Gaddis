@@ -1,7 +1,7 @@
 #ifndef ROOMBA_H
 #define ROOMBA_H
 
-#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -43,7 +43,8 @@ public:
     void moveRightToWall();    // move east bound and stop at boundary
     void moveLeftToWall();     // move west bound and stop at boundary
 
-    void runRoomba(); // run roomba! - user can interact with roomba
+    void runRoomba();          // run roomba! - user can interact with roomba
+    void runRoomba(fstream &); // improved version - that can saved the commands
 };
 
 #endif

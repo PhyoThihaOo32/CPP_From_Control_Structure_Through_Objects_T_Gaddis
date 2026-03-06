@@ -1,16 +1,25 @@
 #include <iostream>
-#include "roomba.cpp"
+#include "roomba.h"
+#include <cstdlib>
 
 using namespace std;
 
 int main()
 {
 
-    Roomba roomba1(3, 3, 15, 15, -15, -15);
-    Roomba roomba2(0, 0, 10, 10, -10, -10);
-    Roomba roomba3(2, 2, 20, 20, -20, -20);
+    srand(time(0));
+    Roomba r1;
 
-    roomba2.runRoomba();
+    cout << "Robot 1" << endl;
+    r1.displayPosition();
+
+    cout << "Robot 2" << endl;
+    Roomba r2;
+    r2.displayPosition();
+
+    cout << "Robot 3" << endl;
+    Roomba r3;
+    r3.displayPosition();
 
     return 0;
 }

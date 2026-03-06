@@ -2,41 +2,46 @@
 #define ROBOT_H
 
 #include "point.h"
+#include <string>
 
 enum orientation_type
 {
-    NORTH = 0,
-    EAST,
-    SOUTH,
-    WEST
+   NORTH = 0,
+   EAST,
+   SOUTH,
+   WEST
 
 };
 
 class Robot
 {
 private:
-    Point point;
-    orientation_type direction;
+   Point point;
+   orientation_type direction;
 
 public:
-    void init();
-    void print() const;
-    void setOrientation(orientation_type);
+   void init();
+   void print() const;
+   void setOrientation(orientation_type);
 
-    Point getPoint() const;
+   Point getPoint() const;
+   orientation_type getOrientation() const;
 
-    bool forward();
+   // get direction in string
+   std::string getDirection() const;
 
-    void turnCW();
-    void turnAntiCW();
+   bool forward();
 
-    bool eastEnd();
-    bool westEnd();
-    bool northEnd();
-    bool southEnd();
+   void turnCW();
+   void turnAntiCW();
 
-    void zig();
-    void zag();
+   bool eastEnd();
+   bool westEnd();
+   bool northEnd();
+   bool southEnd();
+
+   void zig();
+   void zag();
 };
 
 #endif

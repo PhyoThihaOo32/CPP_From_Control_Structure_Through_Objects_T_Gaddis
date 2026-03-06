@@ -1,9 +1,14 @@
 /*
-For unit Testing:
-1.Validate and convert command-line arguments
-2.Instantiate a World object
-3.Store the converted coordinates into the world's member Point array
-4.Call world.print() to verify that data was stored correctly
+This main() function is used for unit testing the World class.
+It:
+1. Prompts the user to enter three coin locations (x, y).
+2. Validates that each coordinate is within the range [0, 9].
+3. Stores the validated coordinates into the World object's
+   internal Point array using world.set().
+4. Calls world.print() to verify that the data was stored correctly.
+
+Focus: input validation, object interaction, and testing
+class functionality.
 */
 
 #include <iostream>

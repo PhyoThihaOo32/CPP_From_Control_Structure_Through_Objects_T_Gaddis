@@ -297,3 +297,67 @@ void Roomba::runRoomba()
 
     } while (direction != 'Q' && direction != 'q');
 }
+
+void Roomba::runRoomba(fstream &file)
+{
+    cout << "Roomba is Ready." << endl;
+    displayPosition();
+    cout << "The Boundaries are as below" << endl;
+    cout << "---------------------------" << endl;
+    displayLimits();
+
+    // Promt the user to enter commands
+    // the robot to go north, south, east and west and enter Q to quit
+    char direction;
+    showPrompt();
+    do
+    {
+
+        cin >> direction;
+        file.put(direction);
+        switch (direction)
+        {
+        case 'n':
+            moveForward();
+            displayPosition();
+            break;
+        case 'N':
+            moveForwardToWall();
+            break;
+        case 'e':
+            moveRight();
+            displayPosition();
+            break;
+        case 'E':
+            moveRightToWall();
+            break;
+        case 's':
+            moveBackward();
+            displayPosition();
+            break;
+        case 'S':
+            moveBackwardToWall();
+            break;
+        case 'w':
+            moveLeft();
+            displayPosition();
+            break;
+        case 'W':
+            moveLeftToWall();
+            break;
+        case 'c':
+        case 'C':
+            moveCenter();
+            displayPosition();
+            break;
+        case 'Q':
+        case 'q':
+            cout << "Roomba Stopped. And Program Terminated." << endl;
+            break;
+        default:
+            cout << "Invalid Input.";
+            break;
+        }
+
+    } while (direction != 'Q' && direction != 'q');
+}

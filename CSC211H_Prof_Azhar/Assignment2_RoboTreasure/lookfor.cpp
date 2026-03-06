@@ -1,15 +1,5 @@
 /*
 Program: look-for
-
-Description:
-This program simulates a robot searching for hidden coins in a 2D grid world.
-
-The program receives coin locations from the command line as
-(x, y) coordinate pairs. For full functionality, it accepts
-6 arguments representing three hidden coins:
-
-look-for <coin1-x> <coin1-y> <coin2-x> <coin2-y> <coin3-x> <coin3-y>
-
 Unit Test (main function purpose):
 The main() function is used for unit testing to verify:
 
@@ -20,13 +10,6 @@ The main() function is used for unit testing to verify:
 5. Proper storage and echoing of validated inputs
 
 If validation fails, the program prints an error message and exits.
-
-Focus:
-- Command-line argument handling
-- Input validation
-- Type conversion
-- Object instantiation
-- Basic unit testing of class functionality
 */
 
 #include <iostream>
