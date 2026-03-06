@@ -2,13 +2,32 @@
 This  program will run a game - where robots will look for three hidden coins - the robots who find all three coins will win.
 */
 
+/*
+Version2 _ BUG FIX NOTE:
+Originally the coin location did not change after a robot found it.
+This happened because the World object was passed by value, creating
+a copy of the world inside the function. Any modification only affected
+the copy and not the original world.
+Fix:
+The World object is now passed by reference so modifications affect
+the real world.
+Additionally, three separate World objects are used:
+    world1 -> user robot
+    world2 -> computer robot 1
+    world3 -> computer robot 2
+Each robot searches in its own parallel world. When a robot finds a
+coin, the coin location in that robot's world is set to (-1, -1),
+marking it as collected without affecting the other robots.
+*/
+
 #include <iostream>
-#include "robot.h"
-#include "world.h"
-#include "point.h"
+#include <cctype>
 #include <vector>
 #include <cstdlib> /* srand, rand */
 #include <ctime>   /* time */
+#include "robot.h"
+#include "world.h"
+#include "point.h"
 
 using namespace std;
 

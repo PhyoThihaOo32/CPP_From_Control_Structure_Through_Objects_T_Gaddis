@@ -1,0 +1,42 @@
+-----------------------------------
+Total Matches Played: 1
+Player Wins: 0
+Player Coins 0
+Player Moves: 3
+-----------------------------------
+Robot1 Wins: 0
+Robot1 Coins: 0
+Robot1 Moves: 3
+-----------------------------------
+Robot2 Wins: 0
+Robot2 Coins: 0
+Robot2 Moves: 5
+-----------------------------------
+-----------------------------------
+Total Matches Played: 2
+Player Wins: 0
+Player Coins 0
+Player Moves: 7
+-----------------------------------
+Robot1 Wins: 0
+Robot1 Coins: 0
+Robot1 Moves: 8
+-----------------------------------
+Robot2 Wins: 0
+Robot2 Coins: 0
+Robot2 Moves: 10
+-----------------------------------
+-----------------------------------
+Total Matches Played: 3
+Player Wins: 0
+Player Coins 0
+Player Moves: 7
+-----------------------------------
+Robot1 Wins: 0
+Robot1 Coins: 0
+Robot1 Moves: 9
+-----------------------------------
+Robot2 Wins: 0
+Robot2 Coins: 0
+Robot2 Moves: 11
+-----------------------------------

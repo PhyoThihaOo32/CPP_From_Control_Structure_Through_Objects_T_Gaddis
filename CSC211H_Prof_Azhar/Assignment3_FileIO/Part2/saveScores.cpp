@@ -5,12 +5,12 @@ This  program will run a game - where robots will look for three hidden coins - 
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 #include "robot.h"
 #include "world.h"
 #include "point.h"
 #include <vector>
-#include <stdlib.h> /* srand, rand */
-#include <time.h>   /* time */
 
 using namespace std;
 
@@ -20,19 +20,20 @@ void putThreeCoins(World &, vector<int> &);
 void displayPrompt();
 bool findCoin(Robot &, World &, int &);
 void atBoundary(Robot &);
-void playComputerRobot(Robot &, World, int &, int &, int &, int &);
-bool playUserRobot(fstream &, Robot &, World, int &, int &, int &, int &);
+void playComputerRobot(Robot &, World &, int &, int &, int &, int &);
+bool playUserRobot(fstream &, fstream &, fstream &, Robot &, World &, int &, int &, int &, int &);
 void saveCommands(fstream &, Robot &, int &);
-void showHighScores(fstream &);
+void showcurrentScores(fstream &);
+void showOverallScores(fstream &);
 
 int main(int argc, char **argv)
 {
-    fstream highScoreFiles("high_scores.txt", ios::out | ios::app);
-    fstream commandFiles("commands.txt", ios::out | ios::app);
-    fstream overallGamePlay("overallGamePlayed.txt", ios::out);
+    fstream currentScoresFile("currentScores.txt", ios::out | ios::trunc | ios::in);
+    fstream commandFiles("commands.txt", ios::out);
+    fstream overallGamePlay("overallGamePlayed.txt", ios::out | ios::app | ios::in);
 
-    vector<int> coordinates; // to store CLI arguments
-    World world;
+    vector<int> coordinates;      // to store CLI arguments
+    World world1, world2, world3; // create three indentical parallel world
 
     // total matches record and total wins
     int total_matches = 0;
@@ -64,18 +65,20 @@ int main(int argc, char **argv)
     // seeds time
     srand(time(NULL));
 
+    // Get the timestamp for the current date and time
+    time_t timestamp;
+    time(&timestamp);
+
     // valid the CLI arguments
     validateInput(argc, argv, coordinates);
 
-    // put the location of three coins in World object
-    putThreeCoins(world, coordinates);
-
-    // echo the locations (for test)
-    world.print();
+    // put the location of three coins in World 3 object
+    putThreeCoins(world1, coordinates);
+    putThreeCoins(world2, coordinates);
+    putThreeCoins(world3, coordinates);
 
     // display commands to user
     displayPrompt();
-
     do
     {
         // flags
@@ -97,9 +100,9 @@ int main(int argc, char **argv)
         while (isContinue && searching)
         {
 
-            isContinue = playUserRobot(commandFiles, user_robot, world, user_coin, ttl_player_coins, user_moveCount, ttl_user_moves);
-            playComputerRobot(computer_robot1, world, robot1_coin, ttl_robot1_coins, robot1_moveCount, ttl_robot1_moves);
-            playComputerRobot(computer_robot2, world, robot2_coin, ttl_robot2_coins, robot2_moveCount, ttl_robot2_moves);
+            isContinue = playUserRobot(commandFiles, currentScoresFile, overallGamePlay, user_robot, world1, user_coin, ttl_player_coins, user_moveCount, ttl_user_moves);
+            playComputerRobot(computer_robot1, world2, robot1_coin, ttl_robot1_coins, robot1_moveCount, ttl_robot1_moves);
+            playComputerRobot(computer_robot2, world3, robot2_coin, ttl_robot2_coins, robot2_moveCount, ttl_robot2_moves);
 
             if (user_coin >= 3)
             {
@@ -127,30 +130,32 @@ int main(int argc, char **argv)
             }
         }
 
-        highScoreFiles << "-----------------------------------" << endl
-                       << "Total Matches Played: " << total_matches << endl
-                       << "Player Wins: " << user_win << endl
-                       << "Player Coins " << ttl_player_coins << endl
-                       << "Player Moves: " << ttl_user_moves << endl
-                       << "-----------------------------------" << endl
-                       << "Robot1 Wins: " << robot1_win << endl
-                       << "Robot1 Coins: " << ttl_robot1_coins << endl
-                       << "Robot1 Moves: " << ttl_robot1_moves << endl
-                       << "-----------------------------------" << endl
-                       << "Robot2 Wins: " << robot2_win << endl
-                       << "Robot2 Coins: " << ttl_robot2_coins << endl
-                       << "Robot2 Moves: " << ttl_robot2_moves << endl
-                       << "-----------------------------------" << endl;
+        currentScoresFile << "-----------------------------------" << endl
+                          << "Total Matches Played: " << total_matches << endl
+                          << "Player Wins: " << user_win << endl
+                          << "Player Coins " << ttl_player_coins << endl
+                          << "Player Moves: " << ttl_user_moves << endl
+                          << "-----------------------------------" << endl
+                          << "Robot1 Wins: " << robot1_win << endl
+                          << "Robot1 Coins: " << ttl_robot1_coins << endl
+                          << "Robot1 Moves: " << ttl_robot1_moves << endl
+                          << "-----------------------------------" << endl
+                          << "Robot2 Wins: " << robot2_win << endl
+                          << "Robot2 Coins: " << ttl_robot2_coins << endl
+                          << "Robot2 Moves: " << ttl_robot2_moves << endl
+                          << "-----------------------------------" << endl;
 
         cout << "Play Again!? Y/N " << endl;
         cin >> playAgain;
-        // if (playAgain == 'Y' || playAgain == 'y')
-        // {
-        //     // reset the hidden locations
-        //     world.reset();
-        //     world.print();
-        //     highScoreFiles << "New Game Start!" << endl;
-        // }
+        if (playAgain == 'Y' || playAgain == 'y')
+        {
+            // reset the hidden locations
+            world1.reset();
+            world2 = world1;
+            world3 = world1;
+            cout << "Coins are hidden somewhere ......." << endl;
+            cout << "New Game Start!" << endl;
+        }
     } while (playAgain != 'N');
 
     overallGamePlay << "-----------------------------------------------" << endl
@@ -167,8 +172,15 @@ int main(int argc, char **argv)
                     << "Robot2 Wins: " << robot2_win << endl
                     << "Robot2 Coins: " << ttl_robot2_coins << endl
                     << "Robot2 Moves: " << ttl_robot2_moves << endl
+                    // Display the date and time represented by the timestamp
+                    << ctime(&timestamp) << endl
                     << "----------------------------------------------" << endl
                     << "----------------------------------------------" << endl;
+
+    // close all files
+    currentScoresFile.close();
+    overallGamePlay.close();
+    commandFiles.close();
 
     return 0;
 }
@@ -260,8 +272,8 @@ void displayPrompt()
          << "3. Turn AntiClockwise." << endl
          << "4. Zig." << endl
          << "5. Zag." << endl
-         << "6. Show Scores." << endl
-         << "7. Show Highest Scores." << endl
+         << "6. Show Current Game Scores." << endl
+         << "7. Show Overall Game History." << endl
          << "0: To Quit the Game" << endl;
 }
 
@@ -326,7 +338,7 @@ void atBoundary(Robot &robot)
     }
 }
 
-void playComputerRobot(Robot &robot, World world, int &coin, int &ttl_coins, int &moveCount, int &ttl_moves)
+void playComputerRobot(Robot &robot, World &world, int &coin, int &ttl_coins, int &moveCount, int &ttl_moves)
 {
     int action = (rand() % 5) + 1;
 
@@ -369,16 +381,19 @@ void playComputerRobot(Robot &robot, World world, int &coin, int &ttl_coins, int
     }
 }
 
-bool playUserRobot(fstream &file, Robot &robot, World world, int &coin, int &ttl_coins, int &moveCount, int &ttl_moves)
+bool playUserRobot(fstream &save_file, fstream &scoreFile, fstream &overallGamePlay, Robot &robot, World &world, int &coin, int &ttl_coins, int &moveCount, int &ttl_moves)
 {
     int input;
     cout << "- - - - - - - - - - - - - - - - - - - - - - - -" << endl;
     cout << "                  Player's Turn                    " << endl;
     cout << "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" << endl;
-    do
+
+    // validate user input
+    while (!(cin >> input) || input < 0 || input > 7)
     {
-        cin >> input;
-    } while (input < 0 || input > 7);
+        cin.clear();
+        cin.ignore(1000, '\n');
+    }
 
     switch (input)
     {
@@ -412,6 +427,14 @@ bool playUserRobot(fstream &file, Robot &robot, World world, int &coin, int &ttl
         robot.print();
         findCoin(robot, world, coin) ? ttl_coins++ : ttl_coins;
         break;
+    case 6:
+        cout << "Here is the Current Game Scores." << endl;
+        showcurrentScores(scoreFile);
+        break;
+    case 7:
+        cout << "Here is the All Game History." << endl;
+        showOverallScores(overallGamePlay);
+        break;
     case 0:
         return false;
     }
@@ -419,7 +442,7 @@ bool playUserRobot(fstream &file, Robot &robot, World world, int &coin, int &ttl
     cout << "- - - - - - - - - - - - - - - - - - - - - - - -" << endl;
     cout << "                 * * * * * * *                 " << endl;
     cout << "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" << endl;
-    saveCommands(file, robot, input);
+    saveCommands(save_file, robot, input);
     return true;
 }
 
@@ -441,113 +464,240 @@ void saveCommands(fstream &file, Robot &robot, int &command)
     }
 }
 
+// this function will show the player current games scores
+// function will take ref of fstream object as parameter
+void showcurrentScores(fstream &file)
+{
+
+    file.seekg(0);
+    string data;
+    cout << "-------------------------------" << endl;
+    cout << "Who is Winning! Who is Gaining?" << endl;
+    cout << "-------------------------------" << endl;
+    if (file)
+    {
+        // read from the file
+        getline(file, data);
+        while (file)
+        {
+            cout << data << endl;
+            // read next item
+            getline(file, data);
+        }
+        file.clear();
+    }
+    else
+    {
+        cout << "Can't open the file." << endl;
+    }
+}
+
+// this function show all the game history that have been played
+void showOverallScores(fstream &file)
+{
+    file.seekg(0);
+    string data;
+    while (getline(file, data))
+    {
+        cout << data << endl;
+    }
+    file.clear();
+}
+
 /*
 =========================================================
-Program: look-for (Robot Coin Game)
+Program: Robot Coin Hunter Game
 =========================================================
 
 Overview:
-This program simulates a game where three robots (one user-controlled
-and two computer-controlled) search a 10x10 grid world for three
-hidden coins. The first robot to collect all three coins wins.
+This program simulates a treasure hunting game where
+three robots search a 10x10 Cartesian grid for three
+hidden coins. The first robot that successfully finds
+all three coins wins the game.
 
-Coins are provided via command-line arguments as three (x,y)
-coordinate pairs.
-
----------------------------------------------------------
-Game Flow:
----------------------------------------------------------
-
-1. Input Validation
-   - validateInput() checks:
-     • Correct number of command-line arguments
-     • All inputs are numeric
-     • All coordinates are within range [0,9]
-   - Valid coordinates are stored in a vector<int>.
-
-2. World Setup
-   - putThreeCoins() stores validated coordinates
-     into the World object's internal Point array.
-   - world.print() displays hidden coin locations.
-
-3. Robot Initialization
-   - All robots are initialized to (0,0).
-   - Direction defaults to EAST.
-
-4. Game Loop
-   - Each iteration:
-       • User robot may act (currently commented).
-       • Two computer robots perform random actions.
-   - Robots can:
-       • Move forward
-       • Turn clockwise / anticlockwise
-       • Perform zig / zag (edge traversal logic)
-
-5. Coin Detection
-   - findCoin() compares robot position with
-     each coin location.
-   - If match:
-       • Coin count increments
-       • Coin location is reset to (-1,-1)
-         (marks coin as collected)
-
-6. Boundary Detection
-   - atBoundary() prints message when robot
-     reaches any world edge.
-
-7. Win Condition
-   - Game ends when any robot collects 3 coins.
-   - Prints winner and move count.
+The program demonstrates object-oriented programming,
+file handling, command-line argument processing,
+randomized robot movement, and game state tracking.
 
 ---------------------------------------------------------
-Function Responsibilities:
+Program Inputs
 ---------------------------------------------------------
 
-validateInput()
-- Ensures safe and valid command-line input.
+The coordinates of the three hidden coins are provided
+through command-line arguments when the program starts.
 
-putThreeCoins()
-- Transfers validated coordinates into World object.
+Example:
 
-displayPrompt()
-- Displays available user commands.
+    ./lookfor 1 2 4 5 7 8
 
-findCoin()
-- Checks if robot position matches any coin.
+This represents three coin locations:
 
-atBoundary()
-- Prints edge notification messages.
+    Coin 1 → (1,2)
+    Coin 2 → (4,5)
+    Coin 3 → (7,8)
 
-computerRobot()
-- Performs random action for AI robots.
-- Updates move count and checks for coins.
+The program validates the command-line arguments to ensure:
 
-userRobot()
-- Handles user input and actions.
-- Updates move count and checks for coins.
+• All arguments are numeric values
+• Exactly six values are provided
+• All coordinates are within the valid range [0,9]
 
 ---------------------------------------------------------
-Key Design Concepts:
+Game World
 ---------------------------------------------------------
 
-• Object-Oriented Design
-  - Robot, World, and Point classes interact cleanly.
+The grid environment is represented by a World class.
 
-• Encapsulation
-  - Robot manages movement.
-  - World manages coin storage.
-  - Point represents coordinates.
+Three identical world objects are created:
 
-• Command-Line Processing
-  - Input validation before game starts.
+    world1 → used by the player robot
+    world2 → used by computer robot 1
+    world3 → used by computer robot 2
 
-• State Tracking
-  - Coin counts per robot.
-  - Move counters.
-  - Coin removal via coordinate invalidation.
+Each robot searches in its own independent world so that
+finding a coin in one world does not affect the other
+robots. When a robot finds a coin, the coin location is
+set to (-1,-1) to mark it as collected.
 
-• Modular Structure
-  - Game logic divided into small, focused functions.
+---------------------------------------------------------
+Robots
+---------------------------------------------------------
+
+Three robots participate in the game:
+
+1. Player Robot
+   Controlled by user commands.
+
+2. Computer Robot 1
+   Moves automatically using random actions.
+
+3. Computer Robot 2
+   Moves automatically using random actions.
+
+All robots start at the same initial position:
+
+    (0,0) facing EAST.
+
+---------------------------------------------------------
+Player Commands
+---------------------------------------------------------
+
+The player can control their robot using the following
+commands:
+
+1 → Move Forward
+2 → Turn Clockwise
+3 → Turn Anti-Clockwise
+4 → Zig Movement
+5 → Zag Movement
+6 → Display Current Game Scores
+7 → Display Overall Game History
+0 → Quit the Game
+
+---------------------------------------------------------
+Coin Detection
+---------------------------------------------------------
+
+After every movement, the robot's current position is
+compared with the stored coin locations.
+
+If a robot reaches a coin location:
+
+• The robot’s coin counter increases
+• A message is displayed indicating the coin was found
+• The coin location in the world is reset to (-1,-1)
+
+---------------------------------------------------------
+Winning Condition
+---------------------------------------------------------
+
+The game ends when any robot collects three coins.
+
+When the game ends, the program displays:
+
+• The winning robot
+• Number of coins collected
+• Number of moves made
+
+---------------------------------------------------------
+File Handling
+---------------------------------------------------------
+
+The program uses three files to record gameplay data.
+
+1. commands.txt
+   Stores all commands entered by the player along with
+   the robot's position and direction after each move.
+
+2. currentScores.txt
+   Stores temporary scoreboard information during the
+   current game session. This file allows the player to
+   view the current statistics while the game is running.
+
+3. overallGamePlayed.txt
+   Stores permanent historical records of completed
+   game sessions including:
+
+   • Total matches played
+   • Total wins per robot
+   • Total coins collected
+   • Total moves performed
+   • Date and time of the game session
+
+---------------------------------------------------------
+Timestamp Logging
+---------------------------------------------------------
+
+The program records the date and time of the game session
+using the C++ time library.
+
+A timestamp is generated when the program starts:
+
+    time_t timestamp;
+    time(&timestamp);
+
+At the end of the program, the timestamp is written to
+the overallGamePlayed.txt file using:
+
+    ctime(&timestamp)
+
+This allows the game history file to record when each
+session was played.
+
+Example output:
+
+    Tue Mar 11 21:42:13 2026
+
+---------------------------------------------------------
+Program Flow
+---------------------------------------------------------
+
+1. Validate command-line arguments
+2. Store coordinates in a vector
+3. Initialize three world objects
+4. Initialize three robots
+5. Display available commands
+6. Start the main game loop
+7. Robots move and search for coins
+8. Coin detection updates statistics
+9. Display current scores when requested
+10. End game when a robot finds three coins
+11. Save final statistics and timestamp to history file
+
+---------------------------------------------------------
+Key Programming Concepts Demonstrated
+---------------------------------------------------------
+
+• Object-Oriented Programming
+• Class interaction (Robot, World, Point)
+• Command-line argument validation
+• File input/output using fstream
+• Random number generation
+• Input validation and error handling
+• Parallel game worlds
+• Game state tracking
+• Modular program structure
+• Timestamp logging using the C++ time library
 
 =========================================================
 */
