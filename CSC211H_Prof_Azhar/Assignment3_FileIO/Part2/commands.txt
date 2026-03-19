@@ -6,9 +6,7 @@ east
 east
 2( 3, 0)
 south
-1( 3, 0)
-south
-1( 3, 0)
+6( 3, 0)
 south
 1( 3, 0)
 south
@@ -16,5 +14,13 @@ south
 south
 2( 3, 0)
 west
-7( 3, 0)
-west
+2( 3, 0)
+north
+2( 3, 0)
+east
+3( 3, 0)
+north
+4( 4, 0)
+south
+6( 4, 0)
+south

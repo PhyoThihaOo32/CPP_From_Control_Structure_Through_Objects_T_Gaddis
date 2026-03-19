@@ -58,7 +58,7 @@ int main()
 
     cout << "That's all the data in the file" << endl;
 
-    file.close();
+        file.close();
 
     return 0;
 }
