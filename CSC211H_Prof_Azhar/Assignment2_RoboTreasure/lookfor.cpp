@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     vector<int> coordinates; // to store int(from cml args)
     int temp;                // for input validation(range check)
     int numPoints = 3;
-    Point points[3]; // array of points
+    point points[3]; // array of points
 
     // check if the user has entered 2 command-line arguments
     if (argc < 2)

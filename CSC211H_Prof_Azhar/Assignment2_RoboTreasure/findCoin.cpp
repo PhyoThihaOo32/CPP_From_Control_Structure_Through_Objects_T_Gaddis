@@ -122,10 +122,10 @@ This function need alots of refractoring and cleaning---Let's just run now.
 void runTreasureHunterRoboBobby(Robot robo, World &world)
 {
     robo.init();
-    Point c1 = world.getPoint(0);
-    Point c2 = world.getPoint(1);
-    Point c3 = world.getPoint(2);
-    Point rb = robo.getPoint();
+    point c1 = world.getPoint(0);
+    point c2 = world.getPoint(1);
+    point c3 = world.getPoint(2);
+    point rb = robo.getPoint();
     int cellCount = 1;
     int coins = 0;
 

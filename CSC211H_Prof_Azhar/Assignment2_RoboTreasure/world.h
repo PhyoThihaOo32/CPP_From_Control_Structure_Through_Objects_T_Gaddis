@@ -6,12 +6,12 @@
 class World
 {
 private:
-    static const int COINS = 3;
-    Point points[COINS]; // array of three points objects
+  static const int COINS = 3;
+  point points[COINS]; // array of three points objects
 public:
-    void print() const;
-    void set(int, int, int);
-    Point getPoint(int) const;
+  void print() const;
+  void set(int, int, int);
+  point getPoint(int) const;
 };
 
 #endif

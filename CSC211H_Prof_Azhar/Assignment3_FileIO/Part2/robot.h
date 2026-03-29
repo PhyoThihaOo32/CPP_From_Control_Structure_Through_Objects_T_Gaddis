@@ -16,7 +16,7 @@ enum orientation_type
 class Robot
 {
 private:
-   Point point;
+   point pt;
    orientation_type direction;
 
 public:
@@ -24,7 +24,7 @@ public:
    void print() const;
    void setOrientation(orientation_type);
 
-   Point getPoint() const;
+   point getPoint() const;
    orientation_type getOrientation() const;
 
    // get direction in string

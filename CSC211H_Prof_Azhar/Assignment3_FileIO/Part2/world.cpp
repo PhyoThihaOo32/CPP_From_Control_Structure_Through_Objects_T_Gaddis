@@ -33,7 +33,7 @@ void World::set(int index, int x, int y)
 }
 
 // return point object at the index
-Point World::getPoint(int index) const
+point World::getPoint(int index) const
 {
     return points[index];
 }

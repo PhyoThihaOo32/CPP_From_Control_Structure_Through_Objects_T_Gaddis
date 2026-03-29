@@ -1,19 +1,19 @@
 #ifndef POINT_H
 #define POINT_H
 
-class Point
+class point
 {
 private:
-    int x, y; // x and y co-ordinates
+   int x, y; // x and y co-ordinates
 
 public:
-    Point() : x(0), y(0) {}
-    void print() const;
-    void set(int, int); // mutator
-    int getX() const;   // accessor
-    int getY() const;
+   point() : x(0), y(0) {}
+   void print() const;
+   void set(int, int); // mutator
+   int getX() const;   // accessor
+   int getY() const;
 
-    bool operator==(const Point &) const;
+   bool operator==(const point &) const;
 };
 
 #endif

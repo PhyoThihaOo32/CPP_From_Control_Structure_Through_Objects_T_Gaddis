@@ -2,27 +2,13 @@
 Total Matches Played: 1
 Player Wins: 0
 Player Coins 0
-Player Moves: 3
+Player Moves: 25
 -----------------------------------
 Robot1 Wins: 0
-Robot1 Coins: 0
-Robot1 Moves: 3
+Robot1 Coins: 1
+Robot1 Moves: 22
 -----------------------------------
 Robot2 Wins: 0
-Robot2 Coins: 0
-Robot2 Moves: 4
------------------------------------
------------------------------------
-Total Matches Played: 2
-Player Wins: 0
-Player Coins 0
-Player Moves: 6
------------------------------------
-Robot1 Wins: 0
-Robot1 Coins: 0
-Robot1 Moves: 8
------------------------------------
-Robot2 Wins: 0
-Robot2 Coins: 0
-Robot2 Moves: 12
+Robot2 Coins: 1
+Robot2 Moves: 25
 -----------------------------------

@@ -25,6 +25,7 @@ bool playUserRobot(fstream &, fstream &, fstream &, Robot &, World &, int &, int
 void saveCommands(fstream &, Robot &, int &);
 void showcurrentScores(fstream &);
 void showOverallScores(fstream &);
+void showVisual(Robot &, Robot &, Robot &);
 
 int main(int argc, char **argv)
 {
@@ -503,6 +504,7 @@ void showOverallScores(fstream &file)
     }
     file.clear();
 }
+
 
 /*
 =========================================================

@@ -5,6 +5,13 @@
 
 using namespace std;
 
+// // forward class
+// class FeetInches;
+
+// // function prototypes for overloaded stream operators
+// ostream &operator<<(ostream &, const FeetInches &);
+// istream &operator>>(istream &, FeetInches &);
+
 class FeetInches
 {
 private:

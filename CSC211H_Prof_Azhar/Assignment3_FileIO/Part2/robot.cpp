@@ -6,7 +6,7 @@ using namespace std;
 // This function initializes the robot’s current location to (0, 0) and its current orientation to east
 void Robot::init()
 {
-    point.set(0, 0);
+    pt.set(0, 0);
     direction = EAST;
 }
 
@@ -15,7 +15,7 @@ I am  at  (0,0) and I am  facing east.*/
 
 void Robot::print() const
 {
-    cout << "I am at ( " << point.getX() << ", " << point.getY() << " ) and I am facing ";
+    cout << "I am at ( " << pt.getX() << ", " << pt.getY() << " ) and I am facing ";
 
     switch (direction)
     {
@@ -37,9 +37,9 @@ void Robot::print() const
 }
 
 // return point member
-Point Robot::getPoint() const
+point Robot::getPoint() const
 {
-    return point;
+    return pt;
 }
 
 // return orientation_type
@@ -77,8 +77,8 @@ It checks to make sure that the robot is not at the edge of its world. It return
 bool Robot::forward()
 {
     bool atEdge = true;
-    int x = point.getX();
-    int y = point.getY();
+    int x = pt.getX();
+    int y = pt.getY();
     if (direction == NORTH)
     {
         y++;
@@ -117,7 +117,7 @@ bool Robot::forward()
             x = 0;
         }
     }
-    point.set(x, y);
+    pt.set(x, y);
     return atEdge;
 }
 
@@ -140,25 +140,25 @@ void Robot::turnAntiCW()
 // This function returns true if the robot has reached the east edge of its world.
 bool Robot::eastEnd()
 {
-    return (point.getX() >= 9) ? true : false;
+    return (pt.getX() >= 9) ? true : false;
 }
 
 // This function returns true if the robot has reached the west edge of its world.
 bool Robot::westEnd()
 {
-    return (point.getX() <= 0) ? true : false;
+    return (pt.getX() <= 0) ? true : false;
 }
 
 // This function returns true if the robot has reached the north edge of its world.
 bool Robot::northEnd()
 {
-    return (point.getY() >= 9) ? true : false;
+    return (pt.getY() >= 9) ? true : false;
 }
 
 // This function returns true if the robot has reached the south edge of its world.
 bool Robot::southEnd()
 {
-    return (point.getY() <= 0) ? true : false;
+    return (pt.getY() <= 0) ? true : false;
 }
 
 /*
