@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Yokai Cho-Han</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <main class="game-shell">
+    <header class="title-band">
+      <p class="title-kicker">Pixel Edo Nights</p>
+      <h1>Pixel Yokai Cho-Han</h1>
+    </header>
+
+    <section class="scene-wrap">
+      <div class="lantern lantern-left" aria-hidden="true"></div>
+      <div class="lantern lantern-right" aria-hidden="true"></div>
+      <div class="torii" aria-hidden="true"></div>
+
+      <div class="scene" aria-live="polite">
+        <div class="character dealer" id="dealerChar">
+          <div class="speech" id="speechDealer">The spirit table opens</div>
+          <div class="sprite-frame dealer-frame">
+            <div class="sprite" id="dealerSprite" aria-hidden="true"></div>
+          </div>
+          <p class="name-tag" id="dealerNameTag">Oni Dealer</p>
+        </div>
+
+        <div class="character cpu" id="aikoChar">
+          <div class="speech" id="speechAiko">Mist rises</div>
+          <div class="sprite-frame">
+            <div class="sprite" id="aikoSprite" aria-hidden="true"></div>
+          </div>
+          <p class="name-tag" id="aikoNameTag">Aiko Ghost</p>
+        </div>
+
+        <div class="table-zone">
+          <div class="tatami-ring"></div>
+          <div class="table"></div>
+
+          <div class="dice-area">
+            <div class="die" id="dieOne">⚀</div>
+            <div class="die" id="dieTwo">⚀</div>
+          </div>
+
+          <div class="result-pill" id="resultPill">Waiting</div>
+        </div>
+
+        <div class="character player" id="playerChar">
+          <div class="speech" id="speechPlayer">Choose Cho or Han</div>
+          <div class="sprite-frame">
+            <div class="sprite" id="playerSprite" aria-hidden="true"></div>
+          </div>
+          <p class="name-tag" id="playerNameTag">You Ghost</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="hud">
+      <div class="controls">
+        <button id="betCho" class="guess-btn cho" type="button">Cho</button>
+        <button id="betHan" class="guess-btn han" type="button">Han</button>
+      </div>
+
+      <div class="status-card">
+        <p id="roundDisplay" class="round-chip">Round 1 / 5</p>
+        <p id="dealerLine" class="dealer-line">Make your guess. Dealer will roll.</p>
+      </div>
+
+      <div class="audio-panel">
+        <label for="playerSpriteSelect" class="song-label">Your Character</label>
+        <select id="playerSpriteSelect" class="song-select"></select>
+
+        <label for="songSelect" class="song-label">Theme Song</label>
+        <select id="songSelect" class="song-select">
+          <option value="local_bounce">Traditional Japanese 3 (Local MP3)</option>
+          <option value="local_senso">Senso Trap Japanese Warrior (Local MP3)</option>
+        </select>
+
+        <div class="action-group">
+          <button id="musicToggle" class="music-btn" type="button">Start Music</button>
+          <button id="restartBtn" class="restart-btn" type="button">Restart Match</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="scoreboard" aria-live="polite">
+      <article class="score-card player">
+        <p class="label">You</p>
+        <p class="score" id="scoreHuman">0</p>
+        <p class="guess" id="guessHuman">-</p>
+      </article>
+
+      <article class="score-card">
+        <p class="label" id="scoreLabelCpu">Computer</p>
+        <p class="score" id="scoreAiko">0</p>
+        <p class="guess" id="guessAiko">-</p>
+      </article>
+    </section>
+
+    <section class="credit-mini" aria-label="Music credit">
+      Music credit:
+      <a href="https://pixabay.com/music/search/japanese/" target="_blank" rel="noopener noreferrer">
+        Pixabay Japanese music
+      </a>
+    </section>
+
+    <section class="result-overlay hidden" id="resultOverlay" aria-live="polite">
+      <p class="result-title">Final Result</p>
+      <p class="result-winner" id="winnerText">Winner</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

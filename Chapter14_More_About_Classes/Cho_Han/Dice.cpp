@@ -1,18 +1,12 @@
 // implementation file for die class
 #include "Dice.h"
 #include <cstdlib>
-#include <ctime>
 
 using namespace std;
 
 Dice::Dice(int numSide)
 {
     side = numSide;
-
-    unsigned seed = time(0);
-
-    // seed the random num generator
-    srand(seed);
 
     // perform initial roll
     roll();

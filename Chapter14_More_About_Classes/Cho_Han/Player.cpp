@@ -1,40 +1,63 @@
 // implementation file for the player class
 
+#include <iostream>
 #include <string>
+#include <limits>
 #include <cstdlib>
-#include <ctime>
 #include "Player.h"
 
 using namespace std;
 
-Player::Player(string n)
+Player::Player(const string &n, bool isHuman)
 {
-    // seed the random number generator
-    srand(time(0));
-
     name = n;
     guess = "";
     points = 0;
+    human = isHuman;
 }
 
 // player will make a guess
 void Player::makeGuess()
 {
-
     const int MIN_VALUE = 0;
     const int MAX_VALUE = 1;
 
-    // guess random number, either 0 or 1
-    int guessNum = (rand() % (MAX_VALUE - MIN_VALUE + 1)) + MIN_VALUE;
+    int guessNum;
 
-    // convert the random number to Cho or Han
-    if (guessNum == 0)
+    if (human)
     {
-        guess = "Cho(Even)";
+        int choice = 0;
+        while (true)
+        {
+            cout << name << ", make your call at the table:" << endl;
+            cout << "  1) Cho (Even)" << endl;
+            cout << "  2) Han (Odd)" << endl;
+            cout << "Enter 1 or 2: ";
+
+            if (cin >> choice && (choice == 1 || choice == 2))
+            {
+                guessNum = choice - 1;
+                break;
+            }
+
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter only 1 or 2." << endl;
+        }
     }
     else
     {
-        guess = "Han(Odd)";
+        // computer player makes a random guess, either 0 or 1
+        guessNum = (rand() % (MAX_VALUE - MIN_VALUE + 1)) + MIN_VALUE;
+    }
+
+    if (guessNum == 0)
+    {
+        guess = "Cho (Even)";
+    }
+    else
+    {
+        guess = "Han (Odd)";
     }
 }
 
@@ -56,4 +79,9 @@ string Player::getGuess() const
 int Player::getPoints() const
 {
     return points;
+}
+
+bool Player::isHuman() const
+{
+    return human;
 }

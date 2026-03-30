@@ -1,74 +1,135 @@
 /*
-The program simulates the game of Cho-Han.
+Cho-Han game with one human player, two computer players, and a dealer.
 */
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <limits>
+#include <cstdlib>
+#include <ctime>
 #include "Dealer.h"
 #include "Player.h"
-#include "Dice.h"
 
 using namespace std;
 
-// function prototype
-void roundResults(Dealer &, Player &, Player &);
+// function prototypes
+void displayFestivalIntro();
+void playMusicCue(bool, const string &);
+void roundResults(Dealer &, vector<Player *> &);
 void checkGuess(Player &, Dealer &);
-void displayGrandWinner(const Player &, const Player &);
+void displayScoreboard(const vector<Player *> &);
+void displayGrandWinner(const vector<Player *> &);
 
 int main()
 {
-
     const int MAX_ROUNDS = 5;
-    string player1Name, player2Name;
+    string humanName;
+    char musicChoice;
+    bool musicOn = false;
 
-    // get players Names
-    cout << "Enter the first player's name: ";
-    cin >> player1Name;
-    cout << "Enter the second player's name: ";
-    cin >> player2Name;
+    // seed randomness once for the whole program
+    srand(static_cast<unsigned>(time(nullptr)));
 
-    // create the dealer
-    Dealer dealer;
+    displayFestivalIntro();
 
-    // create the two players
-    Player player1(player1Name);
-    Player player2(player2Name);
-
-    // play the round and bet
-    for (int i = 0; i < MAX_ROUNDS; i++)
+    cout << "Traveler, what is your name? ";
+    getline(cin, humanName);
+    if (humanName.empty())
     {
-        cout << "Now playing round " << i + 1 << " ." << endl;
-
-        // roll the dice
-        dealer.rollDice();
-
-        // player makes guess
-        player1.makeGuess();
-        player2.makeGuess();
-
-        // check the winner of the round
-        roundResults(dealer, player1, player2);
+        humanName = "Sakura";
     }
 
-    // display the winner
-    displayGrandWinner(player1, player2);
+    cout << "Enable festival music cues (terminal bell)? (y/n): ";
+    cin >> musicChoice;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    musicOn = (musicChoice == 'y' || musicChoice == 'Y');
+
+    // create the dealer and players
+    Dealer dealer;
+    Player humanPlayer(humanName, true);
+    Player cpu1("Aiko");
+    Player cpu2("Kenji");
+
+    vector<Player *> players;
+    players.push_back(&humanPlayer);
+    players.push_back(&cpu1);
+    players.push_back(&cpu2);
+
+    cout << endl;
+    cout << "Dealer Master Hideo welcomes all players to the lantern table." << endl;
+    cout << "Opponents tonight: Aiko and Kenji." << endl;
+    cout << "First to earn glory over " << MAX_ROUNDS << " rounds wins." << endl;
+    cout << endl;
+
+    for (int round = 1; round <= MAX_ROUNDS; round++)
+    {
+        cout << "==========================" << endl;
+        cout << "Round " << round << " of " << MAX_ROUNDS << endl;
+        cout << "==========================" << endl;
+
+        playMusicCue(musicOn, "Taiko rhythm: don... don...");
+
+        dealer.rollDice();
+
+        for (size_t i = 0; i < players.size(); i++)
+        {
+            players[i]->makeGuess();
+        }
+
+        roundResults(dealer, players);
+        cout << endl;
+    }
+
+    playMusicCue(musicOn, "Shamisen finale...");
+    displayGrandWinner(players);
 
     return 0;
 }
 
-// the round result function determines the result of the current round
-void roundResults(Dealer &dealer, Player &p1, Player &p2)
+void displayFestivalIntro()
 {
-    // show the dice value
-    cout << "The dealer rolled " << dealer.getDice1Value()
-         << " and " << dealer.getDice2Value() << endl;
+    cout << "===============================================" << endl;
+    cout << "      KAWAII CHO-HAN FESTIVAL NIGHT" << endl;
+    cout << "===============================================" << endl;
+    cout << "Paper lanterns glow, lucky charms sway, and" << endl;
+    cout << "the dealer invites you to a traditional game of" << endl;
+    cout << "Cho (even) and Han (odd)." << endl;
+    cout << endl;
+}
 
-    // show the result (cho or han)
-    cout << "Result: " << dealer.isChoHan() << endl;
+void playMusicCue(bool musicOn, const string &cue)
+{
+    if (musicOn)
+    {
+        cout << '\a';
+        cout << "[Festival Music] " << cue << endl;
+    }
+}
 
-    // check each player's guess and award points
-    checkGuess(p1, dealer);
-    checkGuess(p2, dealer);
+// determine the result of the current round
+void roundResults(Dealer &dealer, vector<Player *> &players)
+{
+    int die1 = dealer.getDice1Value();
+    int die2 = dealer.getDice2Value();
+    int total = die1 + die2;
+
+    cout << endl;
+    cout << "Dealer reveals the dice: " << die1
+         << " and " << die2
+         << " (total " << total << ")" << endl;
+
+    cout << "Round result: " << dealer.isChoHan() << endl;
+    cout << endl;
+
+    for (size_t i = 0; i < players.size(); i++)
+    {
+        checkGuess(*players[i], dealer);
+    }
+
+    cout << endl;
+    displayScoreboard(players);
 }
 
 // check a player's guess against the dealer's result
@@ -76,47 +137,92 @@ void checkGuess(Player &player, Dealer &dealer)
 {
     const int POINT = 1;
 
-    // get the player's guess
     string playerGuess = player.getGuess();
-
-    // get the dealer's result
     string dealerResult = dealer.isChoHan();
 
-    // display the player result
-    cout << "Player " << player.getName() << " gussed "
-         << player.getGuess() << endl;
+    if (player.isHuman())
+    {
+        cout << player.getName() << " guessed " << playerGuess << "." << endl;
+    }
+    else
+    {
+        cout << player.getName() << " (computer) guessed " << playerGuess << "." << endl;
+    }
 
     if (playerGuess == dealerResult)
     {
         player.addPoints(POINT);
-        cout << "Awarding " << POINT << " point(s) to "
-             << player.getName() << endl;
-    }
-}
-
-void displayGrandWinner(const Player &p1, const Player &p2)
-{
-    cout << "Game Over. Here are the result." << endl;
-
-    // display player 1 result
-    cout << p1.getName() << " :"
-         << p1.getPoints() << " points." << endl;
-
-    // display player 2 result
-    cout << p2.getName() << " :"
-         << p2.getPoints() << " points." << endl;
-
-    // determine the winner
-    if (p1.getPoints() > p2.getPoints())
-    {
-        cout << p1.getName() << " is the winner." << endl;
-    }
-    else if (p2.getPoints() > p1.getPoints())
-    {
-        cout << p2.getName() << " is the winner." << endl;
+        cout << "  Lucky hit! " << player.getName()
+             << " receives " << POINT << " point." << endl;
     }
     else
     {
-        cout << "Both players are tied." << endl;
+        cout << "  No point this round." << endl;
     }
+}
+
+void displayScoreboard(const vector<Player *> &players)
+{
+    cout << "Scoreboard under the lanterns:" << endl;
+    for (size_t i = 0; i < players.size(); i++)
+    {
+        cout << "  " << players[i]->getName()
+             << ": " << players[i]->getPoints() << " point(s)" << endl;
+    }
+}
+
+void displayGrandWinner(const vector<Player *> &players)
+{
+    int bestScore = players[0]->getPoints();
+    vector<string> winners;
+
+    for (size_t i = 0; i < players.size(); i++)
+    {
+        if (players[i]->getPoints() > bestScore)
+        {
+            bestScore = players[i]->getPoints();
+        }
+    }
+
+    for (size_t i = 0; i < players.size(); i++)
+    {
+        if (players[i]->getPoints() == bestScore)
+        {
+            winners.push_back(players[i]->getName());
+        }
+    }
+
+    cout << "===============================================" << endl;
+    cout << "Final Results" << endl;
+    cout << "===============================================" << endl;
+    for (size_t i = 0; i < players.size(); i++)
+    {
+        cout << players[i]->getName()
+             << ": " << players[i]->getPoints() << " point(s)" << endl;
+    }
+    cout << endl;
+
+    if (winners.size() == 1)
+    {
+        cout << "Festival Champion: " << winners[0] << "!" << endl;
+    }
+    else
+    {
+        cout << "It is a tie between ";
+        for (size_t i = 0; i < winners.size(); i++)
+        {
+            cout << winners[i];
+            if (i + 2 == winners.size())
+            {
+                cout << " and ";
+            }
+            else if (i + 1 < winners.size())
+            {
+                cout << ", ";
+            }
+        }
+        cout << "!" << endl;
+    }
+
+    cout << "Arigato for playing at the Cho-Han festival table." << endl;
 }

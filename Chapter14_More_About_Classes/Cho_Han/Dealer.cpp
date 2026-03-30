@@ -29,11 +29,11 @@ string Dealer::isChoHan()
 
     if (sum % 2 == 0)
     {
-        result = "Cho(Even)";
+        result = "Cho (Even)";
     }
     else
     {
-        result = "Han(Odd)";
+        result = "Han (Odd)";
     }
 
     return result;
