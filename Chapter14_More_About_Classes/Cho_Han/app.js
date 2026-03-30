@@ -487,6 +487,8 @@ function playRound(humanGuess) {
 
     const playerWon = state.players.human.guess === result;
     const cpuWon = state.players.aiko.guess === result;
+    const bothRight = playerWon && cpuWon;
+    const bothWrong = !playerWon && !cpuWon;
 
     setSpeech(ui.speechDealer, `${guessLabel(result)}`);
     setSpeech(ui.speechPlayer, playerWon ? "Yatta" : "Next hand");
@@ -495,6 +497,13 @@ function playRound(humanGuess) {
     ui.dealerLine.textContent = `Dealer rolled ${die1} + ${die2} = ${sum}. Result: ${guessLabel(result)}.`;
 
     audio.playRollAccent();
+    if (bothRight || bothWrong) {
+      audio.playDemonVoice();
+    } else if (playerWon) {
+      audio.playEvilLaugh();
+    } else if (cpuWon) {
+      audio.playCpuEvilLaugh();
+    }
     updateHud();
 
     if (state.round >= TOTAL_ROUNDS) {
@@ -552,6 +561,15 @@ class MultiSongAudio {
     this.externalAudio.preload = "none";
     this.externalAudio.volume = 0.62;
     this.usingExternal = false;
+    this.laughAudio = new Audio("./freesound_community-evil-laugh-89423.mp3");
+    this.laughAudio.preload = "auto";
+    this.laughAudio.volume = 0.74;
+    this.cpuLaughAudio = new Audio("./dragon-studio-evil-girl-laughing-401720.mp3");
+    this.cpuLaughAudio.preload = "auto";
+    this.cpuLaughAudio.volume = 0.74;
+    this.demonVoiceAudio = new Audio("./phatphrogstudio-demon-voice-smell-flesh-no-ai-479322.mp3");
+    this.demonVoiceAudio.preload = "auto";
+    this.demonVoiceAudio.volume = 0.78;
   }
 
   ensureCtx() {
@@ -796,6 +814,36 @@ class MultiSongAudio {
     this.playTaiko(true);
     setTimeout(() => this.playTaiko(false), 110);
     setTimeout(() => this.playTaiko(false), 220);
+  }
+
+  playEvilLaugh() {
+    this.laughAudio.pause();
+    this.laughAudio.currentTime = 0;
+
+    const playPromise = this.laughAudio.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      void playPromise.catch(() => {});
+    }
+  }
+
+  playCpuEvilLaugh() {
+    this.cpuLaughAudio.pause();
+    this.cpuLaughAudio.currentTime = 0;
+
+    const playPromise = this.cpuLaughAudio.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      void playPromise.catch(() => {});
+    }
+  }
+
+  playDemonVoice() {
+    this.demonVoiceAudio.pause();
+    this.demonVoiceAudio.currentTime = 0;
+
+    const playPromise = this.demonVoiceAudio.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      void playPromise.catch(() => {});
+    }
   }
 }
 
