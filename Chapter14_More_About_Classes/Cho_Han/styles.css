@@ -1,16 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
 
 :root {
-  --bg-night: #0f1118;
-  --bg-ink: #180e0d;
-  --ink: #1f120f;
-  --panel: rgba(252, 236, 199, 0.95);
-  --panel-dark: rgba(21, 14, 12, 0.84);
-  --frame: #2c1710;
-  --gold: #dfab5d;
-  --paper: #fff2d2;
-  --accent-red: #8f292d;
-  --accent-green: #274f38;
+  --bg-night: #0d1020;
+  --bg-ink: #1a1020;
+  --ink: #1d1210;
+  --panel: #f5dfb0;
+  --panel-dark: #251726;
+  --frame: #2b170f;
+  --gold: #de9f52;
+  --paper: #ffecc8;
+  --accent-red: #9a2a34;
+  --accent-green: #2d5d46;
 }
 
 * {
@@ -24,9 +24,9 @@ body {
   font-family: "VT323", monospace;
   image-rendering: pixelated;
   background:
-    radial-gradient(circle at 14% 10%, rgba(63, 93, 117, 0.45), transparent 30%),
-    radial-gradient(circle at 82% 12%, rgba(143, 73, 63, 0.42), transparent 36%),
-    linear-gradient(160deg, var(--bg-night), var(--bg-ink));
+    linear-gradient(180deg, #23102a 0 30%, #170f23 30% 66%, #0f1322 66% 100%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 2px, transparent 2px 14px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 14px);
 }
 
 .backdrop {
@@ -36,18 +36,21 @@ body {
   background:
     repeating-linear-gradient(
       0deg,
-      rgba(255, 255, 255, 0.02),
-      rgba(255, 255, 255, 0.02) 2px,
-      transparent 2px,
-      transparent 14px
+      rgba(255, 222, 187, 0.04),
+      rgba(255, 222, 187, 0.04) 1px,
+      transparent 1px,
+      transparent 24px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.015),
-      rgba(255, 255, 255, 0.015) 2px,
-      transparent 2px,
-      transparent 14px
-    );
+      rgba(255, 222, 187, 0.035),
+      rgba(255, 222, 187, 0.035) 1px,
+      transparent 1px,
+      transparent 24px
+    ),
+    radial-gradient(circle at 15% 20%, rgba(255, 224, 180, 0.16) 0 2px, transparent 2px),
+    radial-gradient(circle at 72% 14%, rgba(175, 220, 255, 0.14) 0 2px, transparent 2px),
+    radial-gradient(circle at 83% 61%, rgba(255, 194, 150, 0.12) 0 2px, transparent 2px);
 }
 
 .game-shell {
@@ -84,12 +87,11 @@ body {
   position: relative;
   isolation: isolate;
   border: 4px solid #3a2018;
-  box-shadow: 0 0 0 4px var(--gold), 0 20px 36px rgba(0, 0, 0, 0.46);
+  box-shadow: 0 0 0 4px var(--gold), 0 0 0 8px #27150f, 10px 10px 0 rgba(0, 0, 0, 0.5);
   background:
-    radial-gradient(circle at 16% 18%, rgba(255, 98, 118, 0.2), transparent 30%),
-    radial-gradient(circle at 84% 20%, rgba(255, 164, 102, 0.2), transparent 31%),
-    radial-gradient(circle at 48% 75%, rgba(170, 78, 146, 0.24), transparent 36%),
-    linear-gradient(180deg, rgba(38, 17, 24, 0.84), rgba(14, 8, 10, 0.93));
+    linear-gradient(180deg, #2e1425 0 34%, #201323 34% 68%, #120f19 68% 100%),
+    repeating-linear-gradient(0deg, rgba(255, 179, 143, 0.06) 0 2px, transparent 2px 12px),
+    repeating-linear-gradient(90deg, rgba(180, 210, 255, 0.05) 0 2px, transparent 2px 12px);
   overflow: hidden;
 }
 
@@ -106,21 +108,25 @@ body {
   background:
     repeating-linear-gradient(
       90deg,
-      rgba(255, 255, 255, 0.015) 0 2px,
-      transparent 2px 18px
+      rgba(255, 255, 255, 0.035) 0 1px,
+      transparent 1px 16px
     ),
     repeating-linear-gradient(
       0deg,
-      rgba(255, 109, 129, 0.03) 0 2px,
-      transparent 2px 18px
+      rgba(255, 118, 146, 0.045) 0 1px,
+      transparent 1px 16px
     );
 }
 
 .scene-wrap::after {
   z-index: 0;
   background:
-    radial-gradient(circle at 8% 76%, rgba(255, 124, 146, 0.16), transparent 22%),
-    radial-gradient(circle at 92% 74%, rgba(255, 196, 129, 0.14), transparent 20%);
+    linear-gradient(180deg, transparent 0 56%, rgba(36, 68, 62, 0.2) 56% 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(141, 108, 74, 0.08) 0 10px,
+      rgba(86, 60, 41, 0.08) 10px 20px
+    );
 }
 
 .scene {
@@ -147,18 +153,20 @@ body {
 
 .bg-ghost {
   position: absolute;
-  width: 42px;
-  height: 48px;
-  border: 2px solid rgba(205, 227, 255, 0.65);
-  border-radius: 45% 45% 38% 38%;
+  width: 36px;
+  height: 42px;
+  border: 3px solid rgba(53, 79, 107, 0.86);
+  border-radius: 0;
   background:
-    radial-gradient(circle at 34% 42%, #ff6a92 0 3px, transparent 4px),
-    radial-gradient(circle at 66% 42%, #ff6a92 0 3px, transparent 4px),
-    linear-gradient(180deg, rgba(198, 235, 255, 0.66), rgba(137, 192, 255, 0.45));
-  box-shadow:
-    0 0 14px rgba(147, 216, 255, 0.33),
-    inset 0 -6px 0 rgba(36, 76, 111, 0.18);
-  opacity: 0.22;
+    linear-gradient(
+      180deg,
+      rgba(224, 244, 255, 0.8) 0 24%,
+      rgba(165, 210, 255, 0.72) 24% 70%,
+      rgba(122, 169, 222, 0.7) 70% 100%
+    );
+  box-shadow: 3px 3px 0 rgba(19, 36, 55, 0.4);
+  clip-path: polygon(18% 0, 82% 0, 100% 20%, 100% 76%, 82% 76%, 82% 100%, 62% 82%, 50% 96%, 38% 82%, 18% 100%, 18% 76%, 0 76%, 0 20%);
+  opacity: 0.28;
   transform: translate3d(0, 0, 0);
   animation: spiritWander 18s steps(60, end) infinite, spiritFade 3.8s steps(4, end) infinite;
 }
@@ -166,16 +174,22 @@ body {
 .bg-ghost::before {
   content: "";
   position: absolute;
-  left: -2px;
-  right: -2px;
-  bottom: -8px;
-  height: 10px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(168, 214, 255, 0.9) 0 8px,
-      transparent 8px 12px
-    );
+  width: 5px;
+  height: 5px;
+  left: 9px;
+  top: 13px;
+  background: #ff5075;
+  box-shadow: 11px 0 0 #ff5075;
+}
+
+.bg-ghost::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 3px;
+  left: 13px;
+  top: 22px;
+  background: rgba(28, 53, 79, 0.8);
 }
 
 .spirit-a {
@@ -220,18 +234,13 @@ body {
 
 .oni-charm {
   position: absolute;
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
   border: 3px solid #2f1415;
-  border-radius: 12px 12px 42% 42%;
+  border-radius: 0;
   background:
-    radial-gradient(circle at 36% 52%, #ffe88a 0 4px, transparent 5px),
-    radial-gradient(circle at 66% 52%, #ffe88a 0 4px, transparent 5px),
-    radial-gradient(circle at 50% 71%, #ff5c71 0 6px, transparent 7px),
-    linear-gradient(180deg, #ff9da8 0 18%, #f37084 18% 100%);
-  box-shadow:
-    0 0 0 2px rgba(255, 214, 122, 0.4),
-    0 0 14px rgba(244, 98, 127, 0.45);
+    linear-gradient(180deg, #ffb4bf 0 28%, #e9687a 28% 100%);
+  box-shadow: 3px 3px 0 rgba(66, 24, 29, 0.7);
   animation: charmFloat 3.4s steps(2, end) infinite;
 }
 
@@ -239,12 +248,12 @@ body {
 .oni-charm::after {
   content: "";
   position: absolute;
-  top: -12px;
-  width: 12px;
-  height: 12px;
-  background: #ff7e8f;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background: #ffc1ca;
   border: 2px solid #2f1415;
-  transform: rotate(45deg);
+  transform: none;
 }
 
 .oni-charm::before {
@@ -283,9 +292,15 @@ body {
   top: 8px;
   width: 48px;
   height: 64px;
-  background: linear-gradient(180deg, #f9c58d 0 22%, #d45043 22% 100%);
+  background:
+    linear-gradient(180deg, #ffd59a 0 18%, #d54f42 18% 82%, #8f2f31 82% 100%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 241, 201, 0.2) 0 3px,
+      rgba(0, 0, 0, 0.08) 3px 6px
+    );
   border: 3px solid var(--frame);
-  box-shadow: 0 0 16px rgba(255, 171, 86, 0.6);
+  box-shadow: 0 0 0 2px rgba(255, 196, 115, 0.4), 3px 3px 0 rgba(37, 16, 12, 0.7);
   animation: lanternSwing 2.8s steps(2, end) infinite;
 }
 
@@ -352,7 +367,7 @@ body {
   position: absolute;
   inset: 8px;
   border: 3px solid #3f2a1b;
-  border-radius: 50%;
+  border-radius: 0;
   background:
     repeating-linear-gradient(
       90deg,
@@ -366,28 +381,21 @@ body {
 .table {
   position: absolute;
   inset: 42px 84px;
-  border-radius: 22% 22% 26% 26% / 44% 44% 48% 48%;
+  border-radius: 0;
   border: 4px solid #2b1710;
   background:
-    linear-gradient(
+    repeating-linear-gradient(
       90deg,
-      #6e4727 0 10%,
-      #85552d 10% 22%,
-      #9a6333 22% 36%,
-      #a56a35 36% 50%,
-      #9a6333 50% 64%,
-      #85552d 64% 78%,
-      #6e4727 78% 100%
+      #6f4727 0 22px,
+      #8a5a31 22px 44px,
+      #a86b3a 44px 66px
     ),
     repeating-linear-gradient(
       0deg,
-      rgba(255, 212, 147, 0.1) 0 6px,
-      rgba(0, 0, 0, 0.08) 6px 12px
+      rgba(255, 221, 164, 0.08) 0 4px,
+      rgba(0, 0, 0, 0.08) 4px 8px
     );
-  box-shadow:
-    inset 0 0 0 4px rgba(36, 18, 12, 0.42),
-    inset 0 8px 0 rgba(255, 214, 151, 0.16),
-    inset 0 -10px 0 rgba(24, 10, 8, 0.2);
+  box-shadow: inset 0 0 0 4px rgba(36, 18, 12, 0.42), 4px 4px 0 rgba(16, 9, 8, 0.64);
   image-rendering: pixelated;
   overflow: hidden;
 }
@@ -418,8 +426,8 @@ body {
 .table::after {
   inset: 10px 22px 18px;
   border: 3px solid rgba(42, 19, 11, 0.64);
-  border-radius: 20% 20% 28% 28% / 42% 42% 50% 50%;
-  background: linear-gradient(180deg, rgba(255, 226, 173, 0.14), rgba(64, 30, 17, 0.12));
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, rgba(255, 226, 173, 0.14) 0 14px, rgba(64, 30, 17, 0.12) 14px 28px);
 }
 
 .dice-area {
@@ -439,8 +447,19 @@ body {
   place-items: center;
   font-size: 2.4rem;
   border: 3px solid var(--frame);
-  background: linear-gradient(180deg, #fff4dd, #ebd0a6);
-  box-shadow: 3px 3px 0 #29170f;
+  border-radius: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #fff4dd 0 8px,
+      #f6dfb8 8px 16px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(73, 41, 26, 0.06) 0 2px,
+      transparent 2px 8px
+    );
+  box-shadow: 4px 4px 0 #29170f;
 }
 
 .die.rolling {
@@ -456,7 +475,13 @@ body {
   text-align: center;
   padding: 8px 10px;
   border: 3px solid var(--frame);
-  background: linear-gradient(180deg, #f8e7bf, #edcf8f);
+  border-radius: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #f8e7bf 0 12px,
+      #edcf8f 12px 24px
+    );
   font-family: "Press Start 2P", monospace;
   font-size: 0.64rem;
   letter-spacing: 0.05rem;
@@ -476,6 +501,7 @@ body {
   min-height: 36px;
   padding: 6px 10px;
   border: 3px solid var(--frame);
+  border-radius: 0;
   background: #fff4da;
   font-size: 0.95rem;
   line-height: 1.1;
@@ -491,16 +517,17 @@ body {
   height: 172px;
   margin: 0 auto;
   border: 3px solid #2f190f;
+  border-radius: 0;
   background:
-    linear-gradient(180deg, rgba(42, 24, 18, 0.92), rgba(22, 13, 11, 0.9)),
+    linear-gradient(180deg, rgba(47, 30, 23, 0.94), rgba(24, 16, 14, 0.94)),
     repeating-linear-gradient(
-      45deg,
+      90deg,
       rgba(255, 255, 255, 0.04),
-      rgba(255, 255, 255, 0.04) 6px,
-      transparent 6px,
-      transparent 12px
+      rgba(255, 255, 255, 0.04) 4px,
+      transparent 4px,
+      transparent 8px
     );
-  box-shadow: inset 0 0 0 3px rgba(233, 172, 97, 0.32);
+  box-shadow: inset 0 0 0 3px rgba(233, 172, 97, 0.32), 3px 3px 0 rgba(23, 13, 12, 0.75);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -523,7 +550,7 @@ body {
   --sprite-scale: 1.75;
   transform: scale(var(--sprite-scale));
   transform-origin: center center;
-  filter: drop-shadow(0 0 10px rgba(104, 152, 170, 0.55));
+  filter: drop-shadow(3px 3px 0 rgba(37, 59, 84, 0.62));
   animation: floatGhost 2.4s steps(2, end) infinite;
 }
 
@@ -579,7 +606,7 @@ body {
 
 .hud {
   border: 4px solid #3a2018;
-  box-shadow: 0 0 0 3px var(--gold);
+  box-shadow: 0 0 0 3px var(--gold), 6px 6px 0 rgba(24, 15, 12, 0.64);
   background: var(--panel);
   padding: 10px;
   display: grid;
@@ -598,6 +625,7 @@ body {
 .song-select {
   width: 100%;
   border: 3px solid var(--frame);
+  border-radius: 0;
   background: #f8e6bf;
   color: #1f140f;
   padding: 9px 10px;
@@ -635,6 +663,7 @@ body {
 
 .status-card {
   border: 3px solid var(--frame);
+  border-radius: 0;
   background: var(--paper);
   padding: 8px 10px;
 }
@@ -643,6 +672,7 @@ body {
   margin: 0;
   display: inline-block;
   border: 3px solid var(--frame);
+  border-radius: 0;
   background: var(--frame);
   color: #f5d49f;
   padding: 4px 8px;
@@ -701,7 +731,7 @@ body {
 
 .score-card {
   border: 4px solid #3a2018;
-  box-shadow: 0 0 0 2px var(--gold);
+  box-shadow: 0 0 0 2px var(--gold), 4px 4px 0 rgba(14, 8, 10, 0.64);
   background: var(--panel-dark);
   color: #fbe7c3;
   padding: 10px;
@@ -736,8 +766,8 @@ body {
 
 .result-overlay {
   border: 4px solid #3a2018;
-  box-shadow: 0 0 0 3px var(--gold);
-  background: linear-gradient(180deg, #fff1d4, #efcd8e);
+  box-shadow: 0 0 0 3px var(--gold), 6px 6px 0 rgba(14, 8, 10, 0.68);
+  background: repeating-linear-gradient(90deg, #fff1d4 0 16px, #efcd8e 16px 32px);
   text-align: center;
   padding: 10px;
 }
