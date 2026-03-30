@@ -61,6 +61,11 @@ const MUSIC_TRACKS = {
     title: "Senso Trap Japanese Warrior",
     streamUrl: "./onesevenbeatxs-senso-trap-japanese-warrior-rap-beat-prod-by-onesevenbeatxs-328644.mp3",
     fallbackSong: "oni"
+  },
+  local_hitslab_japan: {
+    title: "Hitslab Japan Japanese Music",
+    streamUrl: "./hitslab-japan-japanese-music-502006.mp3",
+    fallbackSong: "matsuri"
   }
 };
 
@@ -442,14 +447,17 @@ function finishMatch() {
     ui.winnerText.textContent = `You Win ${state.players.human.score} - ${state.players.aiko.score}`;
     ui.dealerLine.textContent = "Match over. You take the spirit pot. Press Restart Match for a new game.";
     setSpeech(ui.speechDealer, "Oyabun bows to you");
+    audio.playEvilLaugh();
   } else if (state.players.aiko.score > state.players.human.score) {
     ui.winnerText.textContent = `${state.players.aiko.name} Wins ${state.players.aiko.score} - ${state.players.human.score}`;
     ui.dealerLine.textContent = `Match over. ${state.players.aiko.name} takes the spirit pot. Press Restart Match for a new game.`;
     setSpeech(ui.speechDealer, `${state.players.aiko.name} claims it`);
+    audio.playCpuEvilLaugh();
   } else {
     ui.winnerText.textContent = `Tie ${state.players.human.score} - ${state.players.aiko.score}`;
     ui.dealerLine.textContent = "Match over with equal fate. Press Restart Match for a new game.";
     setSpeech(ui.speechDealer, "Balanced under moonlight");
+    audio.playNoWinnerVoice();
   }
 }
 
@@ -497,7 +505,9 @@ function playRound(humanGuess) {
     ui.dealerLine.textContent = `Dealer rolled ${die1} + ${die2} = ${sum}. Result: ${guessLabel(result)}.`;
 
     audio.playRollAccent();
-    if (bothRight || bothWrong) {
+    if (bothWrong) {
+      audio.playNoGuessRightVoice();
+    } else if (bothRight) {
       audio.playDemonVoice();
     } else if (playerWon) {
       audio.playEvilLaugh();
@@ -567,9 +577,15 @@ class MultiSongAudio {
     this.cpuLaughAudio = new Audio("./dragon-studio-evil-girl-laughing-401720.mp3");
     this.cpuLaughAudio.preload = "auto";
     this.cpuLaughAudio.volume = 0.74;
-    this.demonVoiceAudio = new Audio("./phatphrogstudio-demon-voice-smell-flesh-no-ai-479322.mp3");
+    this.demonVoiceAudio = new Audio("./freesound_community-ich_koennt_kotzen-86794.mp3");
     this.demonVoiceAudio.preload = "auto";
     this.demonVoiceAudio.volume = 0.78;
+    this.noGuessRightVoiceAudio = new Audio("./ribhavagrawal-a-man-sobbing-type-3-265499.mp3");
+    this.noGuessRightVoiceAudio.preload = "auto";
+    this.noGuessRightVoiceAudio.volume = 0.78;
+    this.noWinnerVoiceAudio = new Audio("./phatphrogstudio-demon-voice-smell-flesh-no-ai-479322.mp3");
+    this.noWinnerVoiceAudio.preload = "auto";
+    this.noWinnerVoiceAudio.volume = 0.78;
   }
 
   ensureCtx() {
@@ -841,6 +857,26 @@ class MultiSongAudio {
     this.demonVoiceAudio.currentTime = 0;
 
     const playPromise = this.demonVoiceAudio.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      void playPromise.catch(() => {});
+    }
+  }
+
+  playNoGuessRightVoice() {
+    this.noGuessRightVoiceAudio.pause();
+    this.noGuessRightVoiceAudio.currentTime = 0;
+
+    const playPromise = this.noGuessRightVoiceAudio.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      void playPromise.catch(() => {});
+    }
+  }
+
+  playNoWinnerVoice() {
+    this.noWinnerVoiceAudio.pause();
+    this.noWinnerVoiceAudio.currentTime = 0;
+
+    const playPromise = this.noWinnerVoiceAudio.play();
     if (playPromise && typeof playPromise.catch === "function") {
       void playPromise.catch(() => {});
     }
