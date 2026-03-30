@@ -136,6 +136,274 @@ body {
   padding: 10px;
 }
 
+.scene-atmos {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.scene-atmos::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 164px;
+  height: 120px;
+  background:
+    linear-gradient(180deg, rgba(49, 31, 56, 0) 0 38%, rgba(35, 33, 52, 0.46) 38% 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(54, 42, 64, 0.48) 0 12px,
+      rgba(31, 25, 41, 0.48) 12px 24px
+    );
+  opacity: 0.86;
+}
+
+.scene-atmos::after {
+  content: "";
+  position: absolute;
+  left: -12%;
+  bottom: 146px;
+  width: 124%;
+  height: 46px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(73, 57, 87, 0.38) 0 16px,
+      rgba(39, 29, 53, 0.38) 16px 32px
+    );
+  opacity: 0.6;
+  animation: skylineShift 24s steps(24, end) infinite;
+}
+
+.pixel-moon {
+  position: absolute;
+  left: 12%;
+  top: 56px;
+  width: 78px;
+  height: 78px;
+  border: 4px solid #3b2a2f;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 243, 198, 0.95) 0 42%,
+      rgba(255, 210, 154, 0.9) 42% 72%,
+      rgba(205, 137, 107, 0.86) 72% 100%
+    );
+  box-shadow:
+    0 0 0 4px rgba(253, 183, 128, 0.28),
+    0 0 0 8px rgba(205, 124, 98, 0.2);
+  image-rendering: pixelated;
+  animation: moonPulse 4.8s steps(2, end) infinite;
+}
+
+.pixel-moon::before,
+.pixel-moon::after {
+  content: "";
+  position: absolute;
+  border: 2px solid rgba(95, 56, 58, 0.8);
+  background: rgba(227, 157, 123, 0.65);
+}
+
+.pixel-moon::before {
+  width: 12px;
+  height: 12px;
+  left: 16px;
+  top: 20px;
+}
+
+.pixel-moon::after {
+  width: 8px;
+  height: 8px;
+  right: 14px;
+  bottom: 16px;
+}
+
+.fog-band {
+  position: absolute;
+  left: -14%;
+  width: 132%;
+  border: 2px solid rgba(88, 88, 126, 0.32);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(149, 166, 201, 0.2) 0 18px,
+      rgba(95, 112, 151, 0.2) 18px 36px
+    );
+  image-rendering: pixelated;
+}
+
+.fog-a {
+  bottom: 238px;
+  height: 24px;
+  opacity: 0.46;
+  animation: fogDriftA 16s steps(24, end) infinite;
+}
+
+.fog-b {
+  bottom: 204px;
+  height: 18px;
+  opacity: 0.32;
+  animation: fogDriftB 22s steps(28, end) infinite;
+}
+
+.foxfire {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(73, 40, 24, 0.82);
+  background: #ffd18c;
+  box-shadow:
+    0 0 0 2px rgba(255, 172, 102, 0.36),
+    0 0 0 4px rgba(255, 123, 78, 0.24);
+  image-rendering: pixelated;
+  animation: foxfireDrift 7.8s steps(24, end) infinite;
+}
+
+.foxfire::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: -8px;
+  width: 6px;
+  height: 6px;
+  border: 2px solid rgba(73, 40, 24, 0.75);
+  background: #ff956b;
+}
+
+.foxfire::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  bottom: -10px;
+  width: 4px;
+  height: 8px;
+  background: rgba(255, 189, 131, 0.7);
+}
+
+.fox-a {
+  left: 26%;
+  top: 210px;
+  animation-delay: -1.4s;
+}
+
+.fox-b {
+  right: 24%;
+  top: 252px;
+  animation-delay: -4.1s;
+}
+
+.fox-c {
+  left: 58%;
+  top: 188px;
+  animation-delay: -2.6s;
+}
+
+.paper-seal {
+  position: absolute;
+  width: 20px;
+  height: 56px;
+  border: 3px solid rgba(48, 25, 20, 0.82);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(253, 232, 196, 0.95) 0 8px,
+      rgba(243, 208, 162, 0.95) 8px 16px
+    );
+  box-shadow: 2px 2px 0 rgba(21, 11, 9, 0.58);
+  animation: sealSway 4.6s steps(2, end) infinite;
+}
+
+.paper-seal::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 10px;
+  height: 24px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(151, 28, 30, 0.86) 0 2px,
+      transparent 2px 4px
+    );
+}
+
+.paper-seal::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: -10px;
+  width: 8px;
+  height: 10px;
+  border: 2px solid rgba(48, 25, 20, 0.82);
+  background: #c88f70;
+}
+
+.seal-a {
+  left: 40px;
+  top: 126px;
+}
+
+.seal-b {
+  right: 44px;
+  top: 136px;
+  animation-delay: -1.9s;
+}
+
+.shrine-silhouette {
+  position: absolute;
+  bottom: 174px;
+  width: 84px;
+  height: 46px;
+  border: 3px solid rgba(31, 19, 26, 0.84);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(44, 28, 41, 0.9) 0 10px,
+      rgba(31, 20, 33, 0.9) 10px 20px
+    );
+  box-shadow: 2px 2px 0 rgba(8, 7, 11, 0.6);
+  opacity: 0.74;
+  animation: shrineBob 6.6s steps(2, end) infinite;
+}
+
+.shrine-silhouette::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  right: -12px;
+  top: -14px;
+  height: 10px;
+  border: 3px solid rgba(36, 18, 24, 0.9);
+  background: rgba(59, 36, 52, 0.95);
+}
+
+.shrine-silhouette::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 18px;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  background: rgba(23, 14, 24, 0.86);
+}
+
+.shrine-a {
+  left: 20%;
+  animation-delay: -1.2s;
+}
+
+.shrine-b {
+  right: 18%;
+  width: 70px;
+  height: 40px;
+  animation-delay: -3.4s;
+}
+
 .scene-charms {
   position: absolute;
   inset: 0;
@@ -989,6 +1257,92 @@ body {
   }
 }
 
+@keyframes moonPulse {
+  0%,
+  100% {
+    transform: translateY(0);
+    filter: brightness(1);
+  }
+  50% {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+  }
+}
+
+@keyframes fogDriftA {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fogDriftB {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-4%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes skylineShift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes shrineBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes foxfireDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(8px, -6px, 0);
+  }
+  50% {
+    transform: translate3d(-4px, -12px, 0);
+  }
+  75% {
+    transform: translate3d(6px, -4px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes sealSway {
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
 @media (max-width: 1024px) {
   .scene {
     min-height: 760px;
@@ -1004,7 +1358,9 @@ body {
 
   .charm-c,
   .charm-d,
-  .spirit-e {
+  .spirit-e,
+  .shrine-b,
+  .fox-c {
     display: none;
   }
 }
@@ -1059,8 +1415,21 @@ body {
   .charm-b,
   .spirit-c,
   .spirit-d,
-  .spirit-e {
+  .spirit-e,
+  .fog-b,
+  .fox-b,
+  .fox-c,
+  .seal-b,
+  .shrine-a,
+  .shrine-b {
     display: none;
+  }
+
+  .pixel-moon {
+    width: 62px;
+    height: 62px;
+    left: 8%;
+    top: 70px;
   }
 
   .contact-strip {

@@ -1,4 +1,4 @@
-const TOTAL_ROUNDS = 5;
+const TOTAL_ROUNDS = 10;
 
 const SONGS = {
   matsuri: {
@@ -230,6 +230,7 @@ const state = {
   round: 1,
   gameOver: false,
   rolling: false,
+  lastRoundVoiceCue: null,
   characters: {
     human: SPRITES[0].id,
     aiko: SPRITES[1].id,
@@ -447,12 +448,16 @@ function finishMatch() {
     ui.winnerText.textContent = `You Win ${state.players.human.score} - ${state.players.aiko.score}`;
     ui.dealerLine.textContent = "Match over. You take the spirit pot. Press Restart Match for a new game.";
     setSpeech(ui.speechDealer, "Oyabun bows to you");
-    audio.playEvilLaugh();
+    if (state.lastRoundVoiceCue !== "player_win") {
+      audio.playEvilLaugh();
+    }
   } else if (state.players.aiko.score > state.players.human.score) {
     ui.winnerText.textContent = `${state.players.aiko.name} Wins ${state.players.aiko.score} - ${state.players.human.score}`;
     ui.dealerLine.textContent = `Match over. ${state.players.aiko.name} takes the spirit pot. Press Restart Match for a new game.`;
     setSpeech(ui.speechDealer, `${state.players.aiko.name} claims it`);
-    audio.playCpuEvilLaugh();
+    if (state.lastRoundVoiceCue !== "cpu_win") {
+      audio.playCpuEvilLaugh();
+    }
   } else {
     ui.winnerText.textContent = `Tie ${state.players.human.score} - ${state.players.aiko.score}`;
     ui.dealerLine.textContent = "Match over with equal fate. Press Restart Match for a new game.";
@@ -507,12 +512,18 @@ function playRound(humanGuess) {
     audio.playRollAccent();
     if (bothWrong) {
       audio.playNoGuessRightVoice();
+      state.lastRoundVoiceCue = "both_wrong";
     } else if (bothRight) {
       audio.playDemonVoice();
+      state.lastRoundVoiceCue = "both_right";
     } else if (playerWon) {
       audio.playEvilLaugh();
+      state.lastRoundVoiceCue = "player_win";
     } else if (cpuWon) {
       audio.playCpuEvilLaugh();
+      state.lastRoundVoiceCue = "cpu_win";
+    } else {
+      state.lastRoundVoiceCue = null;
     }
     updateHud();
 
@@ -530,6 +541,7 @@ function resetGame() {
   state.round = 1;
   state.gameOver = false;
   state.rolling = false;
+  state.lastRoundVoiceCue = null;
 
   state.players.human.score = 0;
   state.players.aiko.score = 0;
