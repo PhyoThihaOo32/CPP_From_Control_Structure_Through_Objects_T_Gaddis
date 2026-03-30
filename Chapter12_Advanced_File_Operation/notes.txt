@@ -1,0 +1,200 @@
+/*
+=========================================================
+ADVANCED FILE I/O IN C++
+=========================================================
+
+1) FILE STREAM CLASSES
+---------------------------------------------------------
+ifstream  → input file stream (read)
+ofstream  → output file stream (write)
+fstream   → input + output
+
+Example:
+    ifstream inFile("input.txt");
+    ofstream outFile("output.txt");
+    fstream file("data.txt", ios::in | ios::out);
+
+---------------------------------------------------------
+
+2) FILE OPEN MODES
+---------------------------------------------------------
+ios::in       → read
+ios::out      → write
+ios::app      → append
+ios::trunc    → overwrite file
+ios::binary   → binary mode
+
+Example:
+    ofstream file("data.txt", ios::app);
+
+---------------------------------------------------------
+
+3) CHECK IF FILE OPENED
+---------------------------------------------------------
+if (!file)
+{
+    cout << "Error opening file";
+}
+
+OR
+
+if (file.fail())
+{
+    cout << "File failed to open";
+}
+
+---------------------------------------------------------
+
+4) READING FROM FILE
+---------------------------------------------------------
+
+A) Word-by-word:
+    string word;
+    while (file >> word)
+    {
+        cout << word;
+    }
+
+B) Line-by-line:
+    string line;
+    while (getline(file, line))
+    {
+        cout << line << endl;
+    }
+
+C) Character-by-character:
+    char ch;
+    while (file.get(ch))
+    {
+        cout << ch;
+    }
+
+---------------------------------------------------------
+
+5) WRITING TO FILE
+---------------------------------------------------------
+file << "Hello World" << endl;
+
+file.put('A');  // write single character
+
+---------------------------------------------------------
+
+6) BINARY FILE I/O
+---------------------------------------------------------
+
+Writing:
+    ofstream out("file.dat", ios::binary);
+    int x = 100;
+    out.write(reinterpret_cast<char*>(&x), sizeof(x));
+
+Reading:
+    ifstream in("file.dat", ios::binary);
+    int x;
+    in.read(reinterpret_cast<char*>(&x), sizeof(x));
+
+---------------------------------------------------------
+
+7) FILE POINTERS (IMPORTANT)
+---------------------------------------------------------
+
+tellg() → get current position (input)
+tellp() → get current position (output)
+
+seekg() → move input pointer
+seekp() → move output pointer
+
+Example:
+    file.seekg(0);             // beginning
+    file.seekg(10, ios::beg);  // move 10 bytes from start
+    file.seekg(-5, ios::end);  // move back 5 bytes
+
+---------------------------------------------------------
+
+8) RANDOM ACCESS FILES
+---------------------------------------------------------
+Allows jumping to any location in file
+
+Example:
+    file.seekg(index * sizeof(int));
+    file.read(...);
+
+---------------------------------------------------------
+
+9) EOF HANDLING
+---------------------------------------------------------
+Best method:
+    while (file >> x)
+
+Avoid:
+    while (!file.eof())   // ❌ not safe
+
+---------------------------------------------------------
+
+10) ERROR HANDLING
+---------------------------------------------------------
+file.fail() → operation failed
+file.bad()  → serious error
+file.good() → no error
+
+---------------------------------------------------------
+
+11) STRING STREAM (ADVANCED)
+---------------------------------------------------------
+Used for parsing strings like files
+
+#include <sstream>
+
+Example:
+    string line = "10 20 30";
+    stringstream ss(line);
+
+    int x;
+    while (ss >> x)
+    {
+        cout << x;
+    }
+
+---------------------------------------------------------
+
+12) FILE CLOSE
+---------------------------------------------------------
+file.close();
+
+(Automatically done when object goes out of scope)
+
+=========================================================
+EXAMPLE PROGRAM (ADVANCED)
+=========================================================
+*/
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    // write to file
+    ofstream outFile("example.txt");
+    outFile << "Hello File I/O\n";
+    outFile.close();
+
+    // read from file
+    ifstream inFile("example.txt");
+
+    if (!inFile)
+    {
+        cout << "Error opening file\n";
+        return 1;
+    }
+
+    string line;
+
+    while (getline(inFile, line))
+    {
+        cout << line << endl;
+    }
+
+    inFile.close();
+
+    return 0;
+}

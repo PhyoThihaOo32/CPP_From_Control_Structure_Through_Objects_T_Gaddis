@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C++: From Control Structures through Objects by Tony Gaddis</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./course-data.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">C++: From Control Structures through Objects by Tony Gaddis</p>
+          <h1>C++: From Control Structures through Objects by Tony Gaddis</h1>
+          <p class="hero-text">
+            This app turns the repository into a cleaner learning path. Each
+            chapter includes a lesson summary, guided code examples, a practice
+            ladder, and a recommended way to use the surrounding folders. The
+            first detailed walkthrough starts with the first available source
+            chapter in this repo: <span class="inline-code">Chapter2_Introduction_to_C++</span>.
+          </p>
+          <div class="hero-points">
+            <span class="hero-pill">Book-first title and structure</span>
+            <span class="hero-pill">Program-by-program walkthroughs</span>
+            <span class="hero-pill">Practice tracking in browser</span>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="stat-grid" id="heroStats"></div>
+          <div class="progress-panel" id="globalProgress"></div>
+          <div class="runtime-hint">
+            <strong>Run locally:</strong>
+            serve the repository root with
+            <code>python3 -m http.server 8000</code>
+            and open
+            <code>http://localhost:8000/study-guide/</code>.
+          </div>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="sidebar">
+          <label class="search-card" for="searchInput">
+            <span>Search by chapter, topic, folder, or file</span>
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Try arrays, inheritance, files..."
+              autocomplete="off"
+            />
+          </label>
+
+          <div id="searchSummary" class="search-summary"></div>
+
+          <nav class="nav-stack">
+            <div class="nav-section">
+              <p class="nav-label">Navigate</p>
+              <div id="navPrimary"></div>
+            </div>
+            <div class="nav-section">
+              <p class="nav-label">Study Modules</p>
+              <div id="navChapters"></div>
+            </div>
+            <div class="nav-section">
+              <p class="nav-label">Supplemental Material</p>
+              <div id="navSupplemental"></div>
+            </div>
+          </nav>
+        </aside>
+
+        <main class="content">
+          <section id="mainContent"></section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

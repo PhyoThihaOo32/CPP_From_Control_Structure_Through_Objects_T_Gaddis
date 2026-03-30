@@ -14,7 +14,7 @@ i)	 a constructor with an int parameter representing the number of employees; th
 ii)	 a function that reads in all the ids and the hours into the appropriate arrays.
 
 iii) a function called print_info which, for each employee, does all of the
-                following:
+     following:
 
      It prints the employee’s id and the hours worked.
      If the employee’ s total hours are greater than or equal to 40, it prints

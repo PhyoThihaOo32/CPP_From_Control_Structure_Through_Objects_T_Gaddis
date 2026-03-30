@@ -1,0 +1,4 @@
+write upper case sentences
+this is an example of an upper case sentence.
+all letters in these sentences are capitalized.
+upper case makes text stand out.
