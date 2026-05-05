@@ -17,10 +17,9 @@ int main()
 
     long end;
     fileIn.seekg(0L, ios::end);
-    end = fileIn.tellg();
+    end = fileIn.tellg(); // get the last byte of the file and store it in end
 
-    cout << "Total byte: " << end << endl;
-    for (int i = end - 1; i >= 0; i--)
+    for (int i = end - 1; i >= 0; i--) // but for index start with 0
     {
         fileIn.seekg(i, ios::beg);
         fileIn.get(ch);

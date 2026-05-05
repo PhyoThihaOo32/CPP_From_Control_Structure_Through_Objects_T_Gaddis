@@ -19,10 +19,14 @@
 
 body {
   margin: 0;
+  height: 100vh;
   min-height: 100vh;
   color: var(--ink);
   font-family: "VT323", monospace;
   image-rendering: pixelated;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
   background:
     linear-gradient(180deg, #23102a 0 30%, #170f23 30% 66%, #0f1322 66% 100%),
     repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0 2px, transparent 2px 14px),
@@ -54,12 +58,16 @@ body {
 }
 
 .game-shell {
-  width: min(1180px, 94vw);
-  margin: 14px auto 26px;
+  width: min(1180px, 96vw);
+  height: 100vh;
+  margin: 0 auto;
+  padding: 8px 0;
   display: grid;
-  gap: 12px;
+  grid-template-rows: auto minmax(0, 1fr) auto auto auto auto;
+  gap: 8px;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
 
 .title-band {
@@ -71,13 +79,13 @@ body {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.22rem;
-  font-size: 0.68rem;
+  font-size: 0.58rem;
 }
 
 .title-band h1 {
   margin: 6px 0 0;
   font-family: "Press Start 2P", monospace;
-  font-size: clamp(1.2rem, 3.5vw, 2.1rem);
+  font-size: clamp(0.95rem, 2.3vw, 1.4rem);
   line-height: 1.35;
   text-transform: uppercase;
   text-shadow: 2px 2px 0 #592a22;
@@ -86,6 +94,7 @@ body {
 .scene-wrap {
   position: relative;
   isolation: isolate;
+  min-height: 0;
   border: 4px solid #3a2018;
   box-shadow: 0 0 0 4px var(--gold), 0 0 0 8px #27150f, 10px 10px 0 rgba(0, 0, 0, 0.5);
   background:
@@ -132,8 +141,9 @@ body {
 .scene {
   position: relative;
   z-index: 2;
-  min-height: 690px;
-  padding: 10px;
+  height: 100%;
+  min-height: 0;
+  padding: 8px;
 }
 
 .scene-atmos {
@@ -627,8 +637,8 @@ body {
   left: 50%;
   top: 56%;
   transform: translate(-50%, -50%);
-  width: min(740px, 96vw);
-  height: 340px;
+  width: min(700px, 92vw);
+  height: clamp(220px, 32vh, 320px);
 }
 
 .tatami-ring {
@@ -758,20 +768,20 @@ body {
 
 .character {
   position: absolute;
-  width: 232px;
+  width: clamp(150px, 20vw, 220px);
   text-align: center;
 }
 
 .character .speech {
   margin: 0 auto 8px;
   width: fit-content;
-  max-width: 210px;
-  min-height: 36px;
-  padding: 6px 10px;
+  max-width: 190px;
+  min-height: 28px;
+  padding: 5px 8px;
   border: 3px solid var(--frame);
   border-radius: 0;
   background: #fff4da;
-  font-size: 0.95rem;
+  font-size: clamp(0.72rem, 1.65vh, 0.9rem);
   line-height: 1.1;
   text-transform: uppercase;
 }
@@ -781,8 +791,8 @@ body {
 }
 
 .sprite-frame {
-  width: 172px;
-  height: 172px;
+  width: clamp(126px, 16vw, 160px);
+  height: clamp(126px, 16vw, 160px);
   margin: 0 auto;
   border: 3px solid #2f190f;
   border-radius: 0;
@@ -802,8 +812,8 @@ body {
 }
 
 .dealer-frame {
-  width: 194px;
-  height: 188px;
+  width: clamp(142px, 18vw, 178px);
+  height: clamp(138px, 17vw, 172px);
   border-color: #4a260e;
   box-shadow: inset 0 0 0 3px rgba(255, 194, 82, 0.38);
 }
@@ -824,18 +834,18 @@ body {
 
 .character.player {
   left: 24px;
-  bottom: 18px;
+  bottom: clamp(8px, 1.5vh, 18px);
 }
 
 .character.cpu {
   right: 24px;
-  bottom: 18px;
+  bottom: clamp(8px, 1.5vh, 18px);
 }
 
 .character.dealer {
   left: 50%;
-  top: 86px;
-  width: 280px;
+  top: clamp(48px, 7vh, 78px);
+  width: clamp(180px, 24vw, 248px);
   transform: translateX(-50%);
 }
 
@@ -843,7 +853,7 @@ body {
   margin: 8px 0 0;
   color: #f9e6c3;
   font-family: "Press Start 2P", monospace;
-  font-size: 0.56rem;
+  font-size: clamp(0.45rem, 1vh, 0.53rem);
   line-height: 1.45;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
@@ -873,18 +883,42 @@ body {
 }
 
 .hud {
+  position: relative;
   border: 4px solid #3a2018;
   box-shadow: 0 0 0 3px var(--gold), 6px 6px 0 rgba(24, 15, 12, 0.64);
   background: var(--panel);
-  padding: 10px;
+  padding: 6px;
   display: grid;
-  grid-template-columns: 1fr 1.45fr 1.3fr;
-  gap: 10px;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.34fr) minmax(0, 1.2fr);
+  gap: 6px;
+  align-items: start;
+  overflow: hidden;
+}
+
+.hud::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 239, 202, 0.18) 0 36%, transparent 36% 100%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(126, 70, 47, 0.08) 0 6px,
+      rgba(89, 45, 31, 0.08) 6px 12px
+    );
+}
+
+.hud > * {
+  position: relative;
+  z-index: 1;
 }
 
 .controls {
-  display: flex;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  align-self: start;
 }
 
 .guess-btn,
@@ -896,9 +930,9 @@ body {
   border-radius: 0;
   background: #f8e6bf;
   color: #1f140f;
-  padding: 9px 10px;
+  padding: 6px 8px;
   font: inherit;
-  font-size: 0.98rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
 }
 
@@ -906,6 +940,19 @@ body {
 .music-btn,
 .restart-btn {
   cursor: pointer;
+  transition: transform 120ms steps(2, end), filter 120ms steps(2, end);
+}
+
+.guess-btn {
+  min-height: 78px;
+  letter-spacing: 0.04rem;
+}
+
+.guess-btn:active,
+.music-btn:active,
+.restart-btn:active {
+  transform: translateY(2px);
+  filter: brightness(0.95);
 }
 
 .guess-btn:hover,
@@ -933,7 +980,11 @@ body {
   border: 3px solid var(--frame);
   border-radius: 0;
   background: var(--paper);
-  padding: 8px 10px;
+  padding: 6px 7px;
+  min-height: 78px;
+  display: grid;
+  gap: 5px;
+  align-content: start;
 }
 
 .round-chip {
@@ -943,35 +994,47 @@ body {
   border-radius: 0;
   background: var(--frame);
   color: #f5d49f;
-  padding: 4px 8px;
+  padding: 2px 6px;
   font-family: "Press Start 2P", monospace;
-  font-size: 0.56rem;
+  font-size: 0.45rem;
   line-height: 1.4;
   text-transform: uppercase;
 }
 
 .dealer-line {
-  margin: 8px 0 0;
-  font-size: 1rem;
-  line-height: 1.2;
+  margin: 0;
+  font-size: 0.74rem;
+  line-height: 1.1;
+  letter-spacing: 0.02rem;
   text-transform: uppercase;
 }
 
 .audio-panel {
   display: grid;
-  gap: 8px;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 4px 8px;
+  align-items: center;
+  align-content: start;
 }
 
 .song-label {
-  font-size: 0.82rem;
-  letter-spacing: 0.08rem;
+  margin: 0;
+  font-size: 0.58rem;
+  letter-spacing: 0.05rem;
   text-transform: uppercase;
 }
 
 .action-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 6px;
+  grid-column: 1 / -1;
+}
+
+.music-btn,
+.restart-btn,
+.song-select {
+  min-height: 34px;
 }
 
 .music-btn.active {
@@ -982,14 +1045,16 @@ body {
 .scoreboard {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .credit-mini {
-  font-size: 0.6rem;
+  font-size: 0.45rem;
   color: #e8d3ab;
   text-align: center;
-  letter-spacing: 0.02rem;
+  letter-spacing: 0.03rem;
+  text-transform: uppercase;
+  opacity: 0.92;
 }
 
 .credit-mini a {
@@ -1002,8 +1067,12 @@ body {
   box-shadow: 0 0 0 2px var(--gold), 4px 4px 0 rgba(14, 8, 10, 0.64);
   background: var(--panel-dark);
   color: #fbe7c3;
-  padding: 10px;
+  padding: 6px 8px;
   text-align: center;
+  min-height: 84px;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-content: center;
 }
 
 .score-card.player {
@@ -1013,26 +1082,33 @@ body {
 .score-card .label {
   margin: 0;
   font-family: "Press Start 2P", monospace;
-  font-size: 0.56rem;
-  line-height: 1.5;
+  font-size: 0.5rem;
+  line-height: 1.25;
   text-transform: uppercase;
-  letter-spacing: 0.06rem;
+  letter-spacing: 0.05rem;
 }
 
 .score-card .score {
-  margin: 4px 0;
-  font-size: 2rem;
+  margin: 2px 0;
+  font-size: 1.06rem;
+  line-height: 1.1;
   font-family: "Press Start 2P", monospace;
 }
 
 .score-card .guess {
   margin: 0;
-  font-size: 0.94rem;
+  font-size: 0.62rem;
   text-transform: uppercase;
   color: #f5d19c;
 }
 
 .result-overlay {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(560px, 92vw);
+  z-index: 50;
   border: 4px solid #3a2018;
   box-shadow: 0 0 0 3px var(--gold), 6px 6px 0 rgba(14, 8, 10, 0.68);
   background: repeating-linear-gradient(90deg, #fff1d4 0 16px, #efcd8e 16px 32px);
@@ -1062,6 +1138,7 @@ body {
 }
 
 .contact-strip {
+  position: relative;
   border: 4px solid #3a2018;
   box-shadow: 0 0 0 2px var(--gold);
   background: #241726;
@@ -1069,8 +1146,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  padding: 8px 12px;
+  gap: 10px;
+  padding: 4px 10px;
+  min-height: 38px;
   text-transform: uppercase;
 }
 
@@ -1078,13 +1156,13 @@ body {
   margin: 0;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
+  gap: 5px;
+  font-size: 0.68rem;
 }
 
 .contact-label {
   font-family: "Press Start 2P", monospace;
-  font-size: 0.5rem;
+  font-size: 0.43rem;
   letter-spacing: 0.06rem;
   color: #f8d8a2;
 }
@@ -1344,16 +1422,21 @@ body {
 }
 
 @media (max-width: 1024px) {
+  .hud {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  }
+
+  .audio-panel {
+    grid-column: 1 / -1;
+  }
+
   .scene {
-    min-height: 760px;
+    height: 100%;
+    min-height: 0;
   }
 
   .character.dealer {
     top: 78px;
-  }
-
-  .hud {
-    grid-template-columns: 1fr;
   }
 
   .charm-c,
@@ -1366,49 +1449,83 @@ body {
 }
 
 @media (max-width: 760px) {
+  .hud {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 6px;
+  }
+
+  .guess-btn {
+    min-height: 56px;
+  }
+
+  .status-card {
+    min-height: 0;
+  }
+
+  .audio-panel {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    align-items: stretch;
+  }
+
+  .action-group {
+    grid-column: auto;
+  }
+
   .scene {
-    min-height: 980px;
+    height: 100%;
+    min-height: 0;
   }
 
   .table-zone {
-    width: 98%;
-    height: 300px;
+    width: 96%;
+    height: clamp(180px, 28vh, 230px);
   }
 
   .table {
-    inset: 44px 28px;
+    inset: 30px 20px;
   }
 
   .character {
-    width: 172px;
+    width: 138px;
   }
 
   .character.dealer {
-    width: 220px;
-    top: 94px;
+    width: 174px;
+    top: 74px;
   }
 
   .dealer-frame {
-    width: 168px;
-    height: 166px;
+    width: 130px;
+    height: 126px;
   }
 
   .character.player {
     left: 8px;
-    bottom: 12px;
+    bottom: 8px;
   }
 
   .character.cpu {
     right: 8px;
-    bottom: 12px;
+    bottom: 8px;
   }
 
   .scoreboard {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .score-card {
+    min-height: 72px;
+    padding: 6px;
+  }
+
+  .score-card .score {
+    font-size: 0.92rem;
   }
 
   .action-group {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .charm-a,
@@ -1433,12 +1550,9 @@ body {
   }
 
   .contact-strip {
-    flex-direction: column;
-    gap: 6px;
-    padding: 8px;
-  }
-
-  .contact-item {
-    font-size: 0.84rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px;
   }
 }

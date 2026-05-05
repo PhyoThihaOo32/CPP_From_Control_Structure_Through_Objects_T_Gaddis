@@ -1,6 +1,6 @@
 /*
 4) Write the header and implementation files for a class, and a simple program to test it, according to the following specifications:
-(Sample solution)
+
 a)	Your class has 3 member data: an integer pointer that will be used to create a dynamic variable to represent the number of employees,
     an integer pointer that will be used to create a dynamic array representing employees' ids,
     and a double pointer that will be used to create a dynamic array to represent the total
