@@ -34,6 +34,8 @@ public:
     void setTime(int, int, int);
 
     virtual void showTime()const;
+
+    virtual ~Time(){}
 };
 
 #endif
