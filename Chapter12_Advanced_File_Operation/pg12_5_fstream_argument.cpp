@@ -26,7 +26,7 @@ int main()
     }
     else
     {
-        cout << "Error opening the file." << endl;
+        cerr << "Error opening the file." << endl;
     }
 
     return 0;

@@ -43,7 +43,7 @@ int main()
     }
     else
     {
-        cout << "Cann't open the file." << endl;
+        cerr << "Cann't open the file." << endl;
     }
     iFile.close();
 
