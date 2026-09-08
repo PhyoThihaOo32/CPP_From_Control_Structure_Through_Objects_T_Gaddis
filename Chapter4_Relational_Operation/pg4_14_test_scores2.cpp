@@ -30,6 +30,10 @@ int main()
     if (cin.fail() || (user_score < 0 || user_score > 100))
     {
         cout << "Invalid Input." << endl;
+        // clear the error state
+        cin.clear();
+        // clear the bad input
+        cin.ignore();
     }
     else if (user_score >= A_SCORE)
     {

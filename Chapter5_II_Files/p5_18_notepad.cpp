@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
 
-    ofstream outputFile; // creat ofstream object
+    ofstream outputFile; // create ofstream object
     string user_input;
 
     // open the file

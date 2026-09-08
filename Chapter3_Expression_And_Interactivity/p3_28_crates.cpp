@@ -3,7 +3,9 @@ A program that calculate the volume(in cubic feet), cost, price and profit of an
 */
 
 #include <iostream>
-#include <iomanip> // The <iomanip> header stands for “input/output manipulators”. It allows you to format the output of std::cout more precisely.
+#include <iomanip> 
+// The <iomanip> header stands for “input/output manipulators”. 
+// It allows you to format the output of std::cout more precisely.
 
 using namespace std;
 

@@ -32,7 +32,7 @@ int main()
     do
     {
         // display the menu
-        cout << "Welcome to the pure gym membership options.\n"
+        cout << "Welcome to the Pure Gym membership options.\n"
              << "1.Standard adult membership.\n"
              << "2.Child membership.\n"
              << "3.Senior membership.\n"

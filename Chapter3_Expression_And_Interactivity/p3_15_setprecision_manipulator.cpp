@@ -1,5 +1,6 @@
 /*
-The setprecision manipulator in C++ is used to control the number of digits displayed for floating-point numbers (like float or double), either as:
+The setprecision manipulator in C++ is used to control the number of digits displayed 
+for floating-point numbers (like float or double), either as:
     •	total significant digits (default), or
     •	fixed number of digits after the decimal (when used with fixed)
 */

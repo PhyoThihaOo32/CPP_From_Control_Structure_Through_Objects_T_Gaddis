@@ -2,10 +2,10 @@
 Programming style is the way code is written to make it easy to read, understand, and maintain.
 
 It includes:
-    •	Clear variable names 🧠
-    •	Consistent indentation and spacing 🔠
-    •	Comments that explain logic 📝
-    •	Organized structure and formatting 🧩
+    •	Clear variable names 
+    •	Consistent indentation and spacing 
+    •	Comments that explain logic 
+    •	Organized structure and formatting 
 */
 
 #include <iostream>

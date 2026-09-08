@@ -12,7 +12,6 @@ using namespace std;
 
 int main()
 {
-
     // variables
     double total_sales = 0; // accumulator, initialized with 0
     int days;

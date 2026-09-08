@@ -50,7 +50,7 @@ void show_array(int array[], int size)
     }
     cout << endl;
 }
-
+//
 void selection_sort_array(int array[], int size)
 {
     for (int startScan = 0; startScan < size - 1; startScan++)

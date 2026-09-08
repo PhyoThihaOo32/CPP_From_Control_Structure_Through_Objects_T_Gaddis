@@ -39,7 +39,7 @@ public:
     // 2️⃣ Copy Constructor (Deep Copy)
     StudentTestScores(const StudentTestScores &obj)
     {
-        cout << "📘 Copy constructor called for " << obj.name << endl;
+        cout << "Copy constructor called for " << obj.name << endl;
         name = obj.name;
         numTestScores = obj.numTestScores;
 
@@ -53,7 +53,7 @@ public:
         }
     }
 
-    // 3️⃣ Destructor — clean up dynamic memory
+    // 3️ Destructor — clean up dynamic memory
     ~StudentTestScores()
     {
         cout << "🧹 Destructor called for " << name << endl;

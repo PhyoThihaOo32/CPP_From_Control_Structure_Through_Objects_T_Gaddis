@@ -1,5 +1,5 @@
 /*
-This program roll two dice and print the outcome
+This program roll two dice and print the outcome.
 */
 
 #include <iostream>

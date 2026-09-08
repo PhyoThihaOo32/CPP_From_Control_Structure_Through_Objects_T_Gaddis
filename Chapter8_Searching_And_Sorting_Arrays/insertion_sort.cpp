@@ -26,6 +26,8 @@ int main()
 void insertion_sort(int arr[], int size)
 {
     // 5 , 3, 4, 1
+    // 3 , 5, 4 , 1 -> 2nd iteration ( i = 2)
+    // 3, 4, 5, 1 -> 3rd iteration (i = 3)
     for (int i = 1; i < size; i++)
     {                     // start from index 1 (second element) - the first element index 0 is already sorted
         int key = arr[i]; // element to insert
@@ -34,7 +36,7 @@ void insertion_sort(int arr[], int size)
         {
             // j >= 0 stay inside the array
             // shift only if the element is bigger than key
-            arr[j + 1] = arr[j];
+            arr[j + 1] = arr[j]; // 3 , 4, 5 , 5
             j--;
             // before 5 , 3
             // after  5 , 5

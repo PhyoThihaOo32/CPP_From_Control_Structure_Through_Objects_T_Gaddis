@@ -1,5 +1,5 @@
 /*
-This program demostrate division by zero.
+This program demostrates division by zero.
 */
 
 #include <iostream>

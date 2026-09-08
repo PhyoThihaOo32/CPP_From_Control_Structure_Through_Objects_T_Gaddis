@@ -33,7 +33,6 @@ void division(double num1, double num2)
     if (num2 == 0.0)
     {
         cout << "Denominator can't be zero." << endl;
-
         return; // return statement terminate the function immediately
     }
 

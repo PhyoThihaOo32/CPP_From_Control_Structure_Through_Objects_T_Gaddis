@@ -39,5 +39,5 @@ int main()
             break;
         }
 
-    } while (1);
+    } while (true);
 }

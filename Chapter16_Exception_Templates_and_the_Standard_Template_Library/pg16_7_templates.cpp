@@ -16,29 +16,44 @@ using namespace std;
 template <class T>
 T square(T num)
 {
-    return num * num;
+  return num * num;
+}
+
+template <class T>
+T sum(T num1, T num2)
+{
+  return num1 + num2;
 }
 
 int main()
 {
-    int userInt;
-    double userDouble;
+  int userInt;
+  double userDouble;
 
-    cout << setprecision(5) << fixed << showpoint;
+  cout << setprecision(2) << fixed << showpoint;
 
-    cout << "Enter an integer: ";
-    cin >> userInt;
+  cout << "Enter an integer: ";
+  cin >> userInt;
 
-    cout << "Enter a double: ";
-    cin >> userDouble;
+  cout << "Enter a double: ";
+  cin >> userDouble;
 
-    // The compiler automatically generates two versions of square():
-    //  - one for int
-    //  - one for double
-    cout << "\nSquare of integer: " << setw(5) << square(userInt) << endl;
-    cout << "Square of double:  " << setw(5) << square(userDouble) << endl;
+  // The compiler automatically generates two versions of square():
+  //  - one for int
+  //  - one for double
+  cout << left << setw(25) << "\nSquare of integer:"
+       << right << setw(8) << square(userInt) << endl;
 
-    return 0;
+  cout << left << setw(25) << "Square of double:"
+       << right << setw(8) << square(userDouble) << endl;
+
+  cout << left << setw(25) << "Sum of Two Integers:"
+       << right << setw(8) << sum(2, 2) << endl;
+
+  cout << left << setw(25) << "Sum of Two Floats:"
+       << right << setw(8) << sum(2.2, 2.2) << endl;
+
+  return 0;
 }
 
 /*

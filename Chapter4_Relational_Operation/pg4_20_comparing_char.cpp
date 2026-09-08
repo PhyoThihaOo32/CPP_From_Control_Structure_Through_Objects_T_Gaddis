@@ -14,7 +14,7 @@ int main()
     char user_input;
 
     // get user input
-    cout << "Enter a character or a digit." << endl;
+    cout << "Enter a character: " << endl;
     cin.get(user_input);
 
     // determine what the user entered

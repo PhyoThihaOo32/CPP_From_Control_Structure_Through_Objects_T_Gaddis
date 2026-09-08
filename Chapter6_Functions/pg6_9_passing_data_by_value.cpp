@@ -20,11 +20,11 @@ int main()
 
     cout << "Number: " << number << endl;
 
-    // call function chaged_number_zero
+    // call function changed_number_zero
     change_number_zero(number);
 
     // printing out the original number
-    cout << "Number: " << number << endl;
+    cout << "Number: " << number << endl; // 12
 
     return 0;
 }

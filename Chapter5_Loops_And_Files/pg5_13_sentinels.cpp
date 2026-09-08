@@ -1,6 +1,5 @@
 /*
 A sentinel is a special value that marks the end of a list of values[ or a value which can terminate the loop.]
-
 This program calculate the total number of point a scoccer team has earned over a series of games.
 */
 

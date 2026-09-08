@@ -11,7 +11,7 @@ int main()
 
     // Get the system time
     unsigned seed = time(0); // passing 0 as the argument
-                             // time function returns the number of seconds thathave elapsed since midnight Jan1, 1970
+                             // time function returns the number of seconds that have elapsed since midnight Jan1, 1970
 
     // Seed the random generator
     srand(seed);

@@ -23,6 +23,12 @@ T sum(T num1, T num2, T num3)
     return num1 + num2 + num3;
 }
 
+template <class... T>
+auto multiply(T... nums)
+{
+    return (nums * ...);
+}
+
 int main()
 {
     double num1, num2, num3;
@@ -32,6 +38,8 @@ int main()
 
     cout << "\nSum of two numbers: " << sum(num1, num2) << endl;
     cout << "Sum of three numbers: " << sum(num1, num2, num3) << endl;
+
+    cout << "Multiplication of 5 numbers: " << multiply(2, 2, 2, 2, 2) << endl;
 
     return 0;
 }

@@ -6,7 +6,7 @@ This program demonstrate the use of << and >> operator overloading.
 #include "FeetInches.h"
 
 ostream &operator<<(ostream &, const FeetInches &);
-istream &operator>>(istream &, const FeetInches &);
+istream &operator>>(istream &, FeetInches &);
 
 using namespace std;
 

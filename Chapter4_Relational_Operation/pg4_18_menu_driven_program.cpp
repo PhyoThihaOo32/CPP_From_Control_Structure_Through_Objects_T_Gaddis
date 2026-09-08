@@ -39,10 +39,12 @@ int main()
     cout << setprecision(2) << showpoint << fixed;
 
     // respond the user menu selection
-
     if (cin.fail() || (choice < 1 || choice > 4)) // choice must be in range (1,4) or user must enter integer value
     {
         cout << "Invalid Data and User Input." << endl;
+        // clear the error state and bad input
+        cin.clear();
+        cin.ignore();
     }
     else
     {

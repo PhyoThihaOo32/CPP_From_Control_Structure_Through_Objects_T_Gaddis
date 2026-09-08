@@ -1,6 +1,5 @@
 /*
 This program check and compare the two strings input from the user.
-
 */
 
 #include <iostream>

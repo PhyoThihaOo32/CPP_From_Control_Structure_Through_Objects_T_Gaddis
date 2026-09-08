@@ -32,7 +32,7 @@ int main()
         cout << "15 cents per pound.\n";
         break;
     default:
-        cout << "Shrewd! Don't have it." << endl;
+        cout << "Shrewd! We don't have it." << endl;
     }
 
     return 0;

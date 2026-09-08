@@ -9,7 +9,6 @@ using namespace std;
 
 int main()
 {
-
     ofstream outputFile;
     outputFile.open("demofile.txt");
 

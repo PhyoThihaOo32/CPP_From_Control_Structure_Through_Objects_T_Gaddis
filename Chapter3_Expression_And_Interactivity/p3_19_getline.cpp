@@ -1,6 +1,7 @@
 /*
 Use cin for single-word input (like numbers or one-word strings).
-Use getline() for full-line input, especially when spaces matter (like full names, addresses, sentences, etc).
+Use getline() for full-line input, especially when spaces matter 
+(like full names, addresses, sentences, etc).
 */
 
 #include <iostream>
