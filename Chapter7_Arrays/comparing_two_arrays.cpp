@@ -30,7 +30,8 @@ int main()
         }
     }
 
-    isEqual ? cout << "This two arrays are equal." << endl : cout << "This two arrays are not equal." << endl;
+    isEqual ? cout << "This two arrays are equal." << endl
+            : cout << "This two arrays are not equal." << endl;
 
     return 0;
 }

@@ -9,6 +9,9 @@ using namespace std;
 
 // function prototype
 int sum_three_numbers(int, int, int);
+// using template
+template <typename... T>
+auto sum(T...);
 
 // main function
 int main()
@@ -35,4 +38,11 @@ int main()
 int sum_three_numbers(int num1, int num2, int num3)
 {
     return (num1 + num2 + num3);
+}
+
+// this function takes any number of arg with generic data type and return the sum of the number
+template <typename... T>
+auto sum(T... nums)
+{
+    return (nums + ...);
 }

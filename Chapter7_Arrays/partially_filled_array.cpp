@@ -28,10 +28,22 @@ int main()
         cin >> user_number;
     }
 
-    for (int i = 0; i < count; i++)
+    for (int i = 0; i < SIZE; i++)
     {
         cout << num[i] << " ";
     }
+
+    /*
+    C++ also tries to read the uninitialized elements.
+    Those locations may contain whatever bit patterns happened
+    to already be in that memory, producing numbers like:
+    Index:    0   1   2   3   4   5 ... 99
+
+         ┌───┬───┬───┬───┬───┬───┐
+Value:   │ 1 │ 2 │ 3 │ ? │ ? │ ? │ ...
+         └───┴───┴───┴───┴───┴───┘
+           ↑ valid ↑     garbage
+    */
 
     return 0;
 }

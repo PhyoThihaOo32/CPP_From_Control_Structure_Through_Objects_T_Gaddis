@@ -15,13 +15,15 @@ int main()
     float average;
 
     // using range based for loop to get the total of numbers in the array
-    for (int num : num)
+    for (const int &num : num)
     {
         sum_total += num;
     }
 
     // divding the total with the total numbers
     average = sum_total / SIZE;
+
+    cout << average << endl;
 
     return 0;
 }

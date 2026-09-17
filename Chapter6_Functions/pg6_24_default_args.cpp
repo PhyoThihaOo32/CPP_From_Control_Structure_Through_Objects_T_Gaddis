@@ -25,7 +25,7 @@ int main()
 
     printAsterisks(user_columns, user_rows);
     cout << endl;
-    printAsterisks();
+    printAsterisks(3);
 
     return 0;
 }

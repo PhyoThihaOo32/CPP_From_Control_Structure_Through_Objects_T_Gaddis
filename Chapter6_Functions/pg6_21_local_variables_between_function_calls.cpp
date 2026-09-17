@@ -1,5 +1,6 @@
 /*
-Local Variables are destroyed when the function terminate and re-created when the function starts again.
+Local Variables are destroyed when the function terminate and
+re-created when the function starts again.
 */
 
 #include <iostream>
@@ -24,5 +25,4 @@ void showNumberZero()
 
     cout << "Number = " << number << endl;
     number = 12;
-    
 }

@@ -12,6 +12,9 @@ using namespace std;
 
 // function prototype
 int sum(int, int);
+// using template
+template <typename T>
+T sum(T, T);
 
 int main()
 {
@@ -29,4 +32,11 @@ int sum(int num1, int num2)
 {
 
     return (num1 + num2);
+}
+
+// this function use template sum two arg and return the sum
+template <typename T>
+T sum(T num1, T num2)
+{
+    return (num1, num2);
 }

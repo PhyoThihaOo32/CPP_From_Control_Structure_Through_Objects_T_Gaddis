@@ -1,5 +1,6 @@
 /*
-This program ask user input and stores them in array and then writes datas from the array to a files.
+This program ask user input and stores them in array and
+then writes datas from the array to a files.
 */
 
 #include <iostream>
@@ -31,7 +32,7 @@ int main()
         outputFile << cityName_array[count] << endl;
     }
 
-      // close the outputFile
+    // close the outputFile
     outputFile.close();
 
     // read the data from file

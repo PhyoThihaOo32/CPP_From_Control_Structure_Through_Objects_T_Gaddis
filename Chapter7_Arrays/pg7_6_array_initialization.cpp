@@ -10,7 +10,7 @@ int main()
 {
 
     const int ARRAY_SIZE = 12;
-    int months_array[ARRAY_SIZE] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int months_array[ARRAY_SIZE] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; // initialization list
 
     for (int i = 0; i < ARRAY_SIZE; i++)
     {

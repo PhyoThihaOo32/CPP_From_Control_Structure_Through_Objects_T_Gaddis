@@ -1,5 +1,6 @@
 /*
-This program asks for the number of hours worked by six employees. It stores the values in an array.
+This program asks for the number of hours worked by six employees.
+It stores the values in an array.
 */
 
 #include <iostream>

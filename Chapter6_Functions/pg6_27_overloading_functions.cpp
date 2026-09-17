@@ -1,7 +1,9 @@
 /*
-Two or more functions may have the same name, as long as their paramter lists are different - different set of parameters or parameters with different data types.
+Two or more functions may have the same name, as long as their paramter lists are different
+- different set of parameters or parameters with different data types.
 To distinguish the overloaded function with other function with the same name,
-C++ use function signature - which is the name of the function and the data types of the function's parameters in proper order.
+C++ use function signature - which is the name of the function and
+the data types of the function's parameters in proper order.
 NOTE: function's return value is not part of the signature.
 */
 
@@ -11,7 +13,7 @@ NOTE: function's return value is not part of the signature.
 using namespace std;
 
 int square(int number);
-double square(double number);
+double square(double number); // square function is overloaded because of diff param type - not of diff return type
 
 int main()
 {

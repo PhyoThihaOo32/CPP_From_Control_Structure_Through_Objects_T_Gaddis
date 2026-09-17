@@ -46,13 +46,14 @@ bool isReverse(int array1[], int array2[], int size)
     return true; // All pairs matched
 }
 
-void reverse(int array[], int size)
+void reverse(int array[], int size) // 2 3 4 5 6
 {
     int temp;
     for (int i = 0; i < size / 2; i++)
     {
-        temp = array[i];
-        array[i] = array[size - 1 - i];
-        array[size - 1 - i] = temp;
+        temp = array[i];                // 2 3
+        array[i] = array[size - 1 - i]; // 6 5
+        array[size - 1 - i] = temp;     // 2 3
+        // 6 5 4 3 2
     }
 }

@@ -11,7 +11,7 @@ using namespace std;
 void displayMenu();
 void getUserChoice(char &);
 double calWeeklyPay(int hours, double pay_rate);
-double calWeeklyPay(double annual_salary);
+double calWeeklyPay(double annual_salary); // same name different parameters
 
 int main()
 {
