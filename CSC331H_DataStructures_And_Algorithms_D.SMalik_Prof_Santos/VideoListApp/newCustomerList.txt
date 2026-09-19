@@ -1,0 +1,106 @@
+Charlie Kirk
+37897
+The Matrix
+Keanu Reeves
+Carrie-Anne Moss
+Joel Silver
+Lana Wachowski
+Warner Bros.
+12
++++
+Avatar
+Sam Worthington
+Zoe Saldana
+James Cameron
+James Cameron
+Lightstorm Entertainment
+15
+---
+Ariane Kouame
+19032
+Pulp Fiction
+John Travolta
+Samuel L. Jackson
+Lawrence Bender
+Quentin Tarantino
+Miramax
+4
++++
+The Shawshank Redemption
+Tim Robbins
+Morgan Freeman
+Niki Marvin
+Frank Darabont
+Castle Rock Entertainment
+5
++++
+Interstellar
+Matthew McConaughey
+Anne Hathaway
+Emma Thomas
+Christopher Nolan
+Legendary Pictures
+10
+---
+Pepito Mucho
+10784
+Gladiator
+Russell Crowe
+Joaquin Phoenix
+Douglas Wick
+Ridley Scott
+DreamWorks Pictures
+6
++++
+Forrest Gump
+Tom Hanks
+Robin Wright
+Wendy Finerman
+Robert Zemeckis
+Paramount Pictures
+11
++++
+Jurassic Park
+Sam Neill
+Laura Dern
+Kathleen Kennedy
+Steven Spielberg
+Universal Pictures
+7
+---
+Michael Smith
+23456
+The Dark Knight
+Christian Bale
+Heath Ledger
+Emma Thomas
+Christopher Nolan
+Warner Bros.
+9
++++
+Avatar
+Sam Worthington
+Zoe Saldana
+James Cameron
+James Cameron
+Lightstorm Entertainment
+15
+---
+Phyo Oo
+11234
+Inception
+Leonardo DiCaprio
+Joseph Gordon-Levitt
+Emma Thomas
+Christopher Nolan
+Syncopy
+8
++++
+The Matrix
+Keanu Reeves
+Carrie-Anne Moss
+Joel Silver
+Lana Wachowski
+Warner Bros.
+12
+---
