@@ -88,7 +88,7 @@ Full Stack - if the stackTop is same as maxStackSize of the stack, then the stac
 template <class Type>
 bool stackType<Type>::isFullStack() const
 {
-    return (stackTop == maxStackSize)
+    return (stackTop == maxStackSize);
 }
 
 /*
