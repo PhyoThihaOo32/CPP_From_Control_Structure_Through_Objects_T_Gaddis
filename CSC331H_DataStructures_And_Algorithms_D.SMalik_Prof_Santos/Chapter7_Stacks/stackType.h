@@ -217,16 +217,12 @@ const stackType<Type> &stackType<Type>::operator=(const stackType<Type> &otherSt
 Self-assignment check:
 
 `this` is a pointer to the current object on the left side of the assignment.
-
 `&otherStack` is the address of the object on the right side of the assignment.
-
 If both addresses are the same, then both names refer to the same stack object.
 
 In that case, calling copyStack() would be dangerous because copyStack()
 first deletes the current dynamic array:
-
     delete[] list;
-
 But if both objects are the same, otherStack.list refers to that same array.
 
 After deleting it, the function would then try to copy data from memory

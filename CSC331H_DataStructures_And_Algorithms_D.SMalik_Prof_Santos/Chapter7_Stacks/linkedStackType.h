@@ -2,9 +2,12 @@
 #ifndef LINKEDSTACKTYPE_H
 #define LINKEDSTACKTYPE_H
 #include <cassert>
+#include <iostream>
 
-#include "nodeType.h";
-#include "stackADT.h";
+#include "nodeType.h"
+#include "stackADT.h"
+
+using namespace std;
 
 template <class Type>
 class linkedStackType : public stackADT<Type>
@@ -35,6 +38,12 @@ public:
 
     // function to remove top element from the stack
     void pop();
+
+    // function to print the stack in reverse
+    void reversePrint() const;
+
+    // function to print the stack
+    void print() const;
 
     // constructor
     linkedStackType();
@@ -169,11 +178,44 @@ linkedStackType<Type>::~linkedStackType()
 template <class Type>
 const linkedStackType<Type> &linkedStackType<Type>::operator=(const linkedStackType<Type> &other)
 {
-    if (this != &otherStack) // to avoid self copy (stackA = stackA)
+    if (this != &other) // to avoid self copy (stackA = stackA)
     {
         copyStack(other);
     }
     return *this;
+}
+
+// this function will print the stack in reverse
+template <class Type>
+void linkedStackType<Type>::reversePrint() const
+{
+    nodeType<Type> *current;
+    linkedStackType tempStack;
+    current = stackTop;
+    while (current != nullptr)
+    {
+        tempStack.push(current->info);
+        current = current->link;
+    }
+
+    while (!tempStack.isEmptyStack())
+    {
+        cout << tempStack.top() << " ";
+        tempStack.pop();
+    }
+}
+
+// function to print to stack
+template <class Type>
+void linkedStackType<Type>::print() const
+{
+    nodeType<Type> *current;
+    current = stackTop;
+    while (current != nullptr)
+    {
+        cout << current->info << " ";
+        current = current->link;
+    }
 }
 
 #endif
